@@ -1,3 +1,6 @@
 # Ignore powerpoint files
 *.pptx
 ~$*.pptx
+
+# Ignore maven build artifcats
+target/
