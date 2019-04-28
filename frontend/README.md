@@ -4,4 +4,10 @@ This is the frontend for our application. Let's start with a simple [https://exp
 
 We start by generating a `package.json` file using this [http://jspkg.com/generator](generator). 
 
-To add the express dependency, we call `npm install express --save`. 
+To add the express dependency, we call `npm install express --save`.
+
+The file server can be started with
+
+    node server.js
+    
+     
