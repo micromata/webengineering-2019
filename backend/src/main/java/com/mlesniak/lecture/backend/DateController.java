@@ -1,5 +1,6 @@
 package com.mlesniak.lecture.backend;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -10,4 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class DateController {
+    @GetMapping("/api/date")
+    public void getDate() {
+        System.out.println("Date endpoint called.");
+    }
 }
