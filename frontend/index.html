@@ -26,7 +26,8 @@
                 return response.json()
             })
             .then(function (json) {
-                console.log(json['result']);
+                document.getElementById("result").innerText = json['result'];
+                form['string'].value = '';
             });
         return false;
     }
