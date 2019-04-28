@@ -9,10 +9,13 @@
     <input type="text" name="string" autofocus><br>
     <input type="submit" value="Submit">
 </form>
+<div id="result"></div>
 
 <script>
     function call(form) {
-        console.log(form['string'].value);
+        const value = form['string'].value;
+        document.getElementById("result").innerText = value;
+        form['string'].value = '';
         return false;
     }
 </script>
