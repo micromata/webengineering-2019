@@ -4,3 +4,7 @@
 
 # Ignore maven build artifcats
 target/
+
+# Ignore IDE files
+.idea/
+*.iml
