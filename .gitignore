@@ -8,3 +8,6 @@ target/
 # Ignore IDE files
 .idea/
 *.iml
+
+# Ignore node files
+node_modules/
