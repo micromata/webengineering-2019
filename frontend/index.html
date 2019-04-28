@@ -5,6 +5,15 @@
     <title>News</title>
 </head>
 <body>
-Hello, World!
+<script>
+    // Use HTML5 fetch api, see https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+    fetch('http://localhost:8081/package.json')
+        .then(function (response) {
+            return response.text()
+        })
+        .then(function (text) {
+            document.body.innerHTML = text;
+        })
+</script>
 </body>
 </html>
