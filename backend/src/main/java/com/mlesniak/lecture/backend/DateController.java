@@ -1,5 +1,7 @@
 package com.mlesniak.lecture.backend;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,8 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class DateController {
+    private static final Logger LOG = LoggerFactory.getLogger(DateController.class);
+
     @GetMapping("/api/date")
     public void getDate() {
-        System.out.println("Date endpoint called.");
+        LOG.info("Date endpoint called.");
     }
 }
