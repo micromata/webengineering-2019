@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
+
 /**
  * This class will allow us to sent HTTP requests to /api/date and return a simple JSON object containing the
  * current timestamp.
@@ -16,7 +18,8 @@ public class DateController {
     private static final Logger LOG = LoggerFactory.getLogger(DateController.class);
 
     @GetMapping("/api/date")
-    public void getDate() {
+    public String getDate() {
         LOG.info("Date endpoint called.");
+        return new Date().toString();
     }
 }
