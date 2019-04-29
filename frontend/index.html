@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>News</title>
+</head>
+<body>
+<script>
+    // Use HTML5 fetch api, see https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+    fetch('http://localhost:8080/api/date')
+        .then(function (response) {
+            return response.text()
+        })
+        .then(function (text) {
+            document.body.innerHTML = text;
+        })
+</script>
+</body>
+</html>
