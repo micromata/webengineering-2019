@@ -15,7 +15,7 @@ class GreeterPanel extends React.Component {
         // https://stackoverflow.com/questions/20279484/how-to-access-the-correct-this-inside-a-callback for the
         // beginning of an explanation. Fortunately, we can use ES6 and are fine, here.
         //
-        fetch('http://localhost:8080/api/date')
+        fetch('http://localhost:8080/api/post')
             .then((response) => {
                 return response.text()
             })
