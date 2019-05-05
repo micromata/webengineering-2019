@@ -1,0 +1,14 @@
+body {
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.header {
+    background-color: rgb(255, 102, 0);
+    font-size: 20px;
+    padding: 5px;
+}
+
+.title {
+    font-weight: bold;
+}
