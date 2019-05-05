@@ -34,3 +34,10 @@ body {
     list-style-type: none;
     margin-left: -40px;
 }
+
+/* Special debug class */
+.debug {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid red;
+}
