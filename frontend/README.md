@@ -12,7 +12,7 @@ The file server can be started with
     
 # Persistent database
 
-Start a postgres container in docker using 
+Start a [postgres](https://hub.docker.com/_/postgres) container in docker using 
 
     docker run --rm --name backend-postgres -e POSTGRES_PASSWORD=docker -p 5433:5432 \
         -v $(pwd)/database:/var/lib/postgresql/data postgres     
