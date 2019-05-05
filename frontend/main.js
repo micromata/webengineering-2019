@@ -11,11 +11,15 @@ class GreeterPanel extends React.Component {
     }
 
     componentDidMount() {
+        // Use ES6 arrow functions for this-binding. The keyword this in JavaScript is ... complicated. See, e.g.
+        // https://stackoverflow.com/questions/20279484/how-to-access-the-correct-this-inside-a-callback for the
+        // beginning of an explanation. Fortunately, we can use ES6 and are fine, here.
+        //
         fetch('http://localhost:8080/api/date')
-            .then(function (response) {
+            .then((response) => {
                 return response.text()
             })
-            .then(function (text) {
+            .then((text) => {
                 this.setState({
                     name: text
                 });
