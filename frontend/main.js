@@ -43,9 +43,9 @@ class PostList extends React.Component {
         );
 
         return (
-            <ul>
+            <ol>
                 {posts}
-            </ul>
+            </ol>
         )
     }
 }
