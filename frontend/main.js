@@ -5,28 +5,27 @@
 class GreeterPanel extends React.Component {
     constructor(props) {
         super(props);
-        // Define the 'data structure' for the state of this component.
         this.state = {
             name: ""
         }
     }
 
-    /**
-     * This function is called when the component is rendered in the DOM and can be used to initialize it.
-     *
-     * This is a lifecycle function, see https://reactjs.org/docs/state-and-lifecycle.html for an overview and a more
-     * detailed description.
-     */
     componentDidMount() {
-        this.setState({
-            name: new Date().toLocaleDateString()
-        });
+        fetch('http://localhost:8080/api/date')
+            .then(function (response) {
+                return response.text()
+            })
+            .then(function (text) {
+                this.setState({
+                    name: text
+                });
+            })
     }
 
     render() {
         return (
             <h1>
-                Hello, {this.state.name}!
+                {this.state.name}!
             </h1>
         )
     }
