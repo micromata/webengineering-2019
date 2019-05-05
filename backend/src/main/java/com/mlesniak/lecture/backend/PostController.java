@@ -26,16 +26,5 @@ public class PostController {
     }
 
     // TODO ML Own model class
-    public static class Post {
-        public String title;
-        public String content;
 
-        @Override
-        public String toString() {
-            return "Post{" +
-                    "title='" + title + '\'' +
-                    ", content='" + content + '\'' +
-                    '}';
-        }
-    }
 }
