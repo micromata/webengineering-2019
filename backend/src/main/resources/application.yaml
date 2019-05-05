@@ -3,6 +3,12 @@
 
 spring:
   jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            # See https://github.com/pgjdbc/pgjdbc/issues/1102 for an explanation
+            non_contextual_creation: true
     hibernate:
       ddl-auto: update
   datasource:
