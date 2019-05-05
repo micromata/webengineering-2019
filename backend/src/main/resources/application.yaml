@@ -1,1 +1,12 @@
+# Postgres configuration
+# TODO ML Think about showing flyway etc.?
 
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    # TODO ML Use environment variables
+    url: jdbc:postgresql://localhost:5433/postgres
+    username: postgres
+    password: docker
