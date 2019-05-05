@@ -35,6 +35,8 @@ public class PostController {
         if (post.id != null) {
             // We have explicit methods to handle single post operations, hence we prevent passing a set id value
             // using the global POST endpoint.
+            //
+            // Note that this is more a matter of style than a hard rule.
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
 
