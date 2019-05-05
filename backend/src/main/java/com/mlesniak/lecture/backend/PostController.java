@@ -18,6 +18,7 @@ import java.util.Map;
 public class PostController {
     private static final Logger LOG = LoggerFactory.getLogger(PostController.class);
 
+    // TODO ML We should use a service here.
     private PostRepository postRepository;
 
     // See e.g. https://www.vojtechruzicka.com/field-dependency-injection-considered-harmful/
