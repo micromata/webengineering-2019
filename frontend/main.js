@@ -39,14 +39,18 @@ class PostList extends React.Component {
         const posts = this.state.post.map((post, index) => {
             return (
                 <li key={post.id} onClick={() => this.itemClicked(post.id)}>
-                    {index + 1}. {post.title} <span className='date'>({post.createdAt})</span>
+                    <span className='number'>{index + 1}.</span>
+                    {post.title}
+                    <span className='date'>({post.createdAt.substring(0, 10)})</span>
                 </li>)
         });
 
         return (
-            <ul>
-                {posts}
-            </ul>
+            <div className='postList'>
+                <ul>
+                    {posts}
+                </ul>
+            </div>
         )
     }
 }
