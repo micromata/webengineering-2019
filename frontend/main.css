@@ -21,6 +21,7 @@ body {
 .postList {
     padding: 10px;
     background-color: #f6f6ef;
+    border-bottom: 2px solid rgb(255, 102, 0);
 }
 
 .postList .number {
