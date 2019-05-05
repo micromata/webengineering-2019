@@ -1,13 +1,15 @@
 /**
- * This is a functional component defined by a single returned function. Note that we can't store state in a
- * functional component.
+ * This is a class component with more options for lifecycle management etc.
+ * See https://reactjs.org/docs/state-and-lifecycle.html how to move from a functional component to a class component.
  */
-function GreeterPanel(props) {
-    return (
-        <h1>
-            Hello, {props.name}!
-        </h1>
-    )
+class GreeterPanel extends React.Component {
+    render() {
+        return (
+            <h1>
+                Hello, {this.props.name}!
+            </h1>
+        )
+    }
 }
 
 // See e.g. https://reactjs.org/docs/hello-world.html
