@@ -12,7 +12,12 @@ spring:
     hibernate:
       ddl-auto: update
   datasource:
-    # TODO ML Use environment variables
-    url: jdbc:postgresql://localhost:5433/postgres
-    username: postgres
-    password: docker
+  # If you do not set these values, these are apparently missing. Spring provides a way to add these values in
+  # environment variables, e.g. spring.datasource.url is mapped to SPRING_DATASOURCE_URL etc.
+  #
+  # We follow this approach to prepare our application to work in containerized and cloud environments where
+  # external configuration is often passed using environment variables.
+  #
+  # url: jdbc:postgresql://localhost:5433/postgres
+  # username: postgres
+  # password: docker
