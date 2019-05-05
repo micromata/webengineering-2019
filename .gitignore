@@ -11,3 +11,6 @@ target/
 
 # Ignore node files
 node_modules/
+
+# Ignore database files
+database/
