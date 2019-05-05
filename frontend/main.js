@@ -27,10 +27,17 @@ class GreeterPanel extends React.Component {
     }
 
     render() {
+        // We can't render arbitrary arrays in React, hence we display each one separately as JSX.
+        const posts = this.state.post.map((post) =>
+            <li key={post.id}>
+                {post.title}
+            </li>
+        );
+
         return (
-            <h1>
-                {this.state.post}!
-            </h1>
+            <ul>
+                {posts}
+            </ul>
         )
     }
 }
