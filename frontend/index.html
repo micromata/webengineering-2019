@@ -5,15 +5,32 @@
     <title>News</title>
 </head>
 <body>
+<form action="#" onsubmit="return call(this);">
+    <input type="text" name="string" autofocus><br>
+    <input type="submit" value="Submit">
+</form>
+<div id="result"></div>
+
 <script>
-    // Use HTML5 fetch api, see https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
-    fetch('http://localhost:8080/api/date')
-        .then(function (response) {
-            return response.text()
+    function call(form) {
+        const value = form['string'].value;
+        fetch('http://localhost:8080/api/uppercase', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({string: value})
         })
-        .then(function (text) {
-            document.body.innerHTML = text;
-        })
+            .then(function (response) {
+                return response.json()
+            })
+            .then(function (json) {
+                document.getElementById("result").innerText = json['result'];
+                form['string'].value = '';
+            });
+        return false;
+    }
 </script>
 </body>
 </html>
