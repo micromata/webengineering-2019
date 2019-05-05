@@ -6,7 +6,7 @@ class GreeterPanel extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: ""
+            post: []
         }
     }
 
@@ -17,11 +17,11 @@ class GreeterPanel extends React.Component {
         //
         fetch('http://localhost:8080/api/post')
             .then((response) => {
-                return response.text()
+                return response.json()
             })
-            .then((text) => {
+            .then((data) => {
                 this.setState({
-                    name: text
+                    post: data
                 });
             })
     }
@@ -29,7 +29,7 @@ class GreeterPanel extends React.Component {
     render() {
         return (
             <h1>
-                {this.state.name}!
+                {this.state.post}!
             </h1>
         )
     }
