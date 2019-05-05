@@ -3,10 +3,19 @@
  * See https://reactjs.org/docs/state-and-lifecycle.html how to move from a functional component to a class component.
  */
 class GreeterPanel extends React.Component {
+    constructor(props) {
+        super(props);
+        // This is the state of this component. You retrieve values with this.state.<variable> and set state
+        // using this.setState
+        this.state = {
+            name: props.name
+        }
+    }
+
     render() {
         return (
             <h1>
-                Hello, {this.props.name}!
+                Hello, {this.state.name}!
             </h1>
         )
     }
