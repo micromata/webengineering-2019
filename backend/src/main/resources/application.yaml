@@ -1,6 +1,11 @@
 # Postgres configuration
 # TODO ML Think about showing flyway etc.?
 
+logging:
+  level:
+    ROOT: WARN
+    com.mlesniak: INFO
+
 spring:
   jpa:
     properties:
