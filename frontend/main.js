@@ -36,16 +36,17 @@ class PostList extends React.Component {
 
     render() {
         // We can't render arbitrary arrays in React, hence we display each one separately as JSX.
-        const posts = this.state.post.map((post) =>
-            <li key={post.id} onClick={() => this.itemClicked(post.id)}>
-                {post.title}
-            </li>
-        );
+        const posts = this.state.post.map((post, index) => {
+            return (
+                <li key={post.id} onClick={() => this.itemClicked(post.id)}>
+                    {index + 1}. {post.title} <span className='date'>({post.createdAt})</span>
+                </li>)
+        });
 
         return (
-            <ol>
+            <ul>
                 {posts}
-            </ol>
+            </ul>
         )
     }
 }

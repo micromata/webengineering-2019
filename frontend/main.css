@@ -12,3 +12,7 @@ body {
 .title {
     font-weight: bold;
 }
+
+.date {
+    color: lightgray;
+}
