@@ -5,11 +5,22 @@
 class GreeterPanel extends React.Component {
     constructor(props) {
         super(props);
-        // This is the state of this component. You retrieve values with this.state.<variable> and set state
-        // using this.setState
+        // Define the 'data structure' for the state of this component.
         this.state = {
-            name: props.name
+            name: ""
         }
+    }
+
+    /**
+     * This function is called when the component is rendered in the DOM and can be used to initialize it.
+     *
+     * This is a lifecycle function, see https://reactjs.org/docs/state-and-lifecycle.html for an overview and a more
+     * detailed description.
+     */
+    componentDidMount() {
+        this.setState({
+            name: new Date().toLocaleDateString()
+        });
     }
 
     render() {
@@ -23,6 +34,6 @@ class GreeterPanel extends React.Component {
 
 // See e.g. https://reactjs.org/docs/hello-world.html
 ReactDOM.render(
-    <GreeterPanel name='Lecture'/>,
+    <GreeterPanel/>,
     document.getElementById('root')
 );
