@@ -10,4 +10,13 @@ The file server can be started with
 
     node server.js
     
-     
+# Persistent database
+
+Start a postgres container in docker using 
+
+    docker run --rm --name backend-postgres -e POSTGRES_PASSWORD=docker -p 5433:5432 \
+        -v $(pwd)/database:/var/lib/postgresql/data postgres     
+        
+Note that you have to adapt the command line for windows. Be aware that we use the non-standard postgres port `5433` 
+instead of 5432 to prevent port conflicts with a possible already running postgres database on your system.         
+        
