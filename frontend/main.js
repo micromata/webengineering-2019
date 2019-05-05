@@ -2,7 +2,7 @@
  * This is a class component with more options for lifecycle management etc.
  * See https://reactjs.org/docs/state-and-lifecycle.html how to move from a functional component to a class component.
  */
-class GreeterPanel extends React.Component {
+class PostList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -44,6 +44,6 @@ class GreeterPanel extends React.Component {
 
 // See e.g. https://reactjs.org/docs/hello-world.html
 ReactDOM.render(
-    <GreeterPanel/>,
+    <PostList/>,
     document.getElementById('root')
 );
