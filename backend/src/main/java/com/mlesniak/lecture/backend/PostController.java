@@ -16,9 +16,17 @@ import java.util.Map;
 public class PostController {
     private static final Logger LOG = LoggerFactory.getLogger(PostController.class);
 
-    // TODO ML Constructor injection
-    @Autowired
     private PostRepository postRepository;
+
+    // See e.g. https://www.vojtechruzicka.com/field-dependency-injection-considered-harmful/
+    //
+    // The Spring team generally advocates constructor injection as it enables one to implement application components
+    // as immutable objects and to ensure that required dependencies are not null. Furthermore, constructor-injected
+    // components are always returned to client (calling) code in a fully initialized state.
+    @Autowired
+    public PostController(PostRepository postRepository) {
+        this.postRepository = postRepository;
+    }
 
     @PostMapping("/api/post")
     public Map<String, String> save(@RequestBody Post post) {
