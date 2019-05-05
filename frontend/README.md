@@ -18,5 +18,7 @@ Start a postgres container in docker using
         -v $(pwd)/database:/var/lib/postgresql/data postgres     
         
 Note that you have to adapt the command line for windows. Be aware that we use the non-standard postgres port `5433` 
-instead of 5432 to prevent port conflicts with a possible already running postgres database on your system.         
+instead of 5432 to prevent port conflicts with a possible already running postgres database on your system.
+
+Use `-d` as parameter to start in daemon mode without logs.         
         
