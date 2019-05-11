@@ -66,7 +66,9 @@ class PostItem extends React.Component {
             <li onClick={() => this.itemClicked(this.props.post.id)}>
                 <span className='number'>{this.props.index + 1}.</span>
                 {this.props.post.title}
-                <span className='date'>({this.props.post.createdAt.substring(0, 10)})</span>
+                <div className='date'>
+                    <span className='date'>{this.props.post.numberOfComments} comments</span>
+                </div>
             </li>
         )
     }
