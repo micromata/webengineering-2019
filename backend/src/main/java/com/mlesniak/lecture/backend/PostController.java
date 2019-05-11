@@ -7,14 +7,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
  * Controller to handle all CRUD-related post requests.
+ *
+ * // TODO ML Show swagger?
  */
 @CrossOrigin
 @RestController
@@ -57,25 +56,24 @@ public class PostController {
         return postsWithoutComments;
     }
 
-//    @GetMapping("/api/post/{id}")
-//    public Map<String, Object> postDetails(@PathVariable("id") long id) {
-//        HashMap<String, Object> map = new HashMap<>();
-//        LOG.info("Retrieving details for post {}", id);
-//
-//        // Get main post.
-//        Optional<Post> oPost = postRepository.findById(id);
-//        if (!oPost.isPresent()) {
-//            // TODO ML Correct return type
-//            return null;
-//        }
-//        map.put("post", oPost.get());
-//
-//        // Get all comments for top post.
-//        List<Post> comments = postRepository.findComments(id);
-//        map.put("comments", comments);
-//
-//        return map;
-//    }
+    /**
+     * Retrieve details to a single post.
+     */
+    @GetMapping("/api/post/{id}")
+    public ResponseEntity<Post> postDetails(@PathVariable("id") long id) {
+        HashMap<String, Object> map = new HashMap<>();
+        LOG.info("Retrieving details for post {}", id);
+
+        // Get main post (which will include all comments).
+        Optional<Post> oPost = postRepository.findById(id);
+        if (!oPost.isPresent()) {
+            LOG.warn("Post with id {} not found", id);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        Post post = oPost.get();
+
+        return ResponseEntity.ok(post);
+    }
 
     /**
      * Add method to delete everything. Only used for testing and will later be removed.
