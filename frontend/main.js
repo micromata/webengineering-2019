@@ -26,14 +26,6 @@ class PostList extends React.Component {
             })
     }
 
-    /**
-     * Called when a post item is clicked. Currently we simply print the post it, later we will use this information
-     * to display this post using routing.
-     */
-    itemClicked(postId) {
-        console.log("Post clicked: " + postId);
-    }
-
     render() {
         // We can't render arbitrary arrays in React, hence we display each one separately as JSX.
         const posts = this.state.post.map((post, index) => {
@@ -61,9 +53,16 @@ class PostItem extends React.Component {
         super(props);
     }
 
+    /**
+     * Called when a post item is clicked. Currently we simply print the post it, later we will use this information
+     * to display this post using routing.
+     */
+    itemClicked(postId) {
+        console.log("Post clicked: " + postId);
+    }
+
     render() {
         return (
-            // Ignore clicked item (for now)!
             <li onClick={() => this.itemClicked(this.props.post.id)}>
                 <span className='number'>{this.props.index + 1}.</span>
                 {this.props.post.title}
