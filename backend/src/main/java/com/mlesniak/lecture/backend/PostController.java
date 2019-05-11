@@ -8,8 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Controller to handle all CRUD-related post requests.
@@ -33,20 +35,26 @@ public class PostController {
     }
 
     @PostMapping("/api/post")
-    public ResponseEntity<Map<String, String>> save(@RequestBody Post post) {
+    public ResponseEntity<Map<String, String>> getPosts(@RequestBody Post post) {
         LOG.info("Storing post: {}", post);
         postRepository.save(post);
         return ResponseEntity.status(HttpStatus.OK).body(Collections.emptyMap());
     }
 
     /**
-     * Return all posts which are not comments.
+     * Return all posts without their transitive comments.
      */
     @GetMapping("/api/post")
-    // TODO ML Method name
-    public Iterable<Post> save() {
+    public List<Post> getPosts() {
         LOG.info("Retrieving all posts");
-        return postRepository.findAll();
+        // We can later use our findPosts method to simply return the basic information instead of gathering
+        // everything and filter already pre-filled objects.
+        List<Post> postsWithoutComments = postRepository.findPosts().stream().map(post -> {
+            post.comments = null;
+            return post;
+        }).collect(Collectors.toList());
+
+        return postsWithoutComments;
     }
 
 //    @GetMapping("/api/post/{id}")

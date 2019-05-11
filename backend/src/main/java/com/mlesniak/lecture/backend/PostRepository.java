@@ -7,8 +7,7 @@ import java.util.List;
 
 public interface PostRepository extends CrudRepository<Post, Long> {
     @Query(value = "SELECT p FROM Post p WHERE p.title IS NOT NULL")
-        // TODO ML Rename to findPosts()
-    List<Post> findAll();
+    List<Post> findPosts();
 
 //    @Query(value = "SELECT p FROM Post p WHERE p.parent.id = :id")
 //    List<Post> findComments(@Param("id") long id);
