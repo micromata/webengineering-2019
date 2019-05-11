@@ -2,10 +2,7 @@ package com.mlesniak.lecture.backend;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -40,5 +37,13 @@ public class Post {
                 ", comments=" + comments +
                 ", numberOfComments=" + numberOfComments +
                 '}';
+    }
+
+    /**
+     * This method is called after an object is loaded.
+     */
+    @PostLoad
+    private void computeStatistics() {
+        numberOfComments = comments.size();
     }
 }
