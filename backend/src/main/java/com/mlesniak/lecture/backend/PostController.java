@@ -34,7 +34,7 @@ public class PostController {
     }
 
     @PostMapping("/api/post")
-    public ResponseEntity<Map<String, String>> getPosts(@RequestBody Post post) {
+    public ResponseEntity<Map<String, String>> addPost(@RequestBody Post post) {
         LOG.info("Storing post: {}", post);
         postRepository.save(post);
         return ResponseEntity.status(HttpStatus.OK).body(Collections.emptyMap());
@@ -44,7 +44,7 @@ public class PostController {
      * Return all posts without their transitive comments.
      */
     @GetMapping("/api/post")
-    public List<Post> getPosts() {
+    public List<Post> listPosts() {
         LOG.info("Retrieving all posts");
         // We can later use our findPosts method to simply return the basic information instead of gathering
         // everything and filter already pre-filled objects.
@@ -60,7 +60,7 @@ public class PostController {
      * Retrieve details to a single post.
      */
     @GetMapping("/api/post/{id}")
-    public ResponseEntity<Post> postDetails(@PathVariable("id") long id) {
+    public ResponseEntity<Post> getPostDetails(@PathVariable("id") long id) {
         HashMap<String, Object> map = new HashMap<>();
         LOG.info("Retrieving details for post {}", id);
 
@@ -79,7 +79,7 @@ public class PostController {
      * Add method to delete everything. Only used for testing and will later be removed.
      */
     @DeleteMapping("/api/post")
-    public ResponseEntity<Void> deleteAll() {
+    public ResponseEntity<Void> deleteAllPosts() {
         LOG.warn("Deleting ALL posts");
         postRepository.deleteAll();
         return ResponseEntity.ok().build();
@@ -89,7 +89,7 @@ public class PostController {
      * Add a comment to an existing post given its id.
      */
     @PostMapping("/api/post/{id}/comment")
-    public ResponseEntity<Map<String, Object>> addComment(@PathVariable("id") long id, @RequestBody Post post) {
+    public ResponseEntity<Map<String, Object>> addPostComment(@PathVariable("id") long id, @RequestBody Post post) {
         LOG.info("Adding comment {} to post.id {}", post, id);
         // Get parent post if available.
         Optional<Post> oParentPost = postRepository.findById(id);
