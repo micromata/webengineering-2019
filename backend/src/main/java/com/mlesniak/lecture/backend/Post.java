@@ -28,6 +28,7 @@ public class Post {
     // cumbersome. Hence we switch the direction and a post refers to all its direct comments.
     @OneToMany
     public List<Post> comments;
+    public Integer numberOfComments;
 
     @Override
     public String toString() {
@@ -37,6 +38,7 @@ public class Post {
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", comments=" + comments +
+                ", numberOfComments=" + numberOfComments +
                 '}';
     }
 }
