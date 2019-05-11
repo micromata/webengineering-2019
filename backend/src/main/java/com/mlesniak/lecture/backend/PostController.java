@@ -7,9 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * Controller to handle all CRUD-related post requests.
@@ -43,10 +41,32 @@ public class PostController {
      * Return all posts which are not comments.
      */
     @GetMapping("/api/post")
+    // TODO ML Method name
     public Iterable<Post> save() {
         LOG.info("Retrieving all posts");
         return postRepository.findAll();
     }
+
+    @GetMapping("/api/post/{id}")
+    public Map<String, Object> postDetails(@PathVariable("id") long id) {
+        HashMap<String, Object> map = new HashMap<>();
+        LOG.info("Retrieving details for post {}", id);
+
+        // Get main post.
+        Optional<Post> oPost = postRepository.findById(id);
+        if (!oPost.isPresent()) {
+            // TODO ML Correct return type
+            return null;
+        }
+        map.put("post", oPost.get());
+
+        // Get all comments for top post.
+        List<Post> comments = postRepository.findComments(id);
+        map.put("comments", comments);
+
+        return map;
+    }
+
 
     /**
      * Add method to delete everything. Only used for testing and will later be removed.
