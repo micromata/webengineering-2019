@@ -1,0 +1,14 @@
+# Based on
+#
+# docker run --rm --name backend-postgres -e POSTGRES_PASSWORD=docker -p 5433:5432 \
+# -v $(pwd)/database:/var/lib/postgresql/data postgres
+version: '3'
+services:
+  database:
+    image: "postgres:latest"
+    environment:
+      POSTGRES_PASSWORD: docker
+    volumes:
+      - ../database:/var/lib/postgresql/data
+    ports:
+      - 5433:5432
