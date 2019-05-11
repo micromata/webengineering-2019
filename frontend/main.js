@@ -37,12 +37,10 @@ class PostList extends React.Component {
     render() {
         // We can't render arbitrary arrays in React, hence we display each one separately as JSX.
         const posts = this.state.post.map((post, index) => {
-            return (
-                <li key={post.id} onClick={() => this.itemClicked(post.id)}>
-                    <span className='number'>{index + 1}.</span>
-                    {post.title}
-                    <span className='date'>({post.createdAt.substring(0, 10)})</span>
-                </li>)
+            return <PostItem
+                key={post.id}   // Necessary for react.
+                post={post}     // The actual post.
+                index={index}/> // Need to show continous numbering
         });
 
         return (
@@ -53,6 +51,20 @@ class PostList extends React.Component {
             </div>
         )
     }
+}
+
+/**
+ * Functional component for displaying a single post list value.
+ */
+function PostItem(props) {
+    return (
+        // Ignore clicked item (for now)!
+        <li onClick={() => this.itemClicked(props.post.id)}>
+            <span className='number'>{props.index + 1}.</span>
+            {props.post.title}
+            <span className='date'>({props.post.createdAt.substring(0, 10)})</span>
+        </li>
+    )
 }
 
 // See e.g. https://reactjs.org/docs/hello-world.html
