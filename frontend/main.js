@@ -54,17 +54,23 @@ class PostList extends React.Component {
 }
 
 /**
- * Functional component for displaying a single post list value.
+ * Component for displaying a single post list value.
  */
-function PostItem(props) {
-    return (
-        // Ignore clicked item (for now)!
-        <li onClick={() => this.itemClicked(props.post.id)}>
-            <span className='number'>{props.index + 1}.</span>
-            {props.post.title}
-            <span className='date'>({props.post.createdAt.substring(0, 10)})</span>
-        </li>
-    )
+class PostItem extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            // Ignore clicked item (for now)!
+            <li onClick={() => this.itemClicked(this.props.post.id)}>
+                <span className='number'>{this.props.index + 1}.</span>
+                {this.props.post.title}
+                <span className='date'>({this.props.post.createdAt.substring(0, 10)})</span>
+            </li>
+        )
+    }
 }
 
 // See e.g. https://reactjs.org/docs/hello-world.html
