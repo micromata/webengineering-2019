@@ -39,6 +39,9 @@ public class PostController {
         return ResponseEntity.status(HttpStatus.OK).body(Collections.emptyMap());
     }
 
+    /**
+     * Return all posts which are not comments.
+     */
     @GetMapping("/api/post")
     public Iterable<Post> save() {
         LOG.info("Retrieving all posts");
@@ -55,6 +58,9 @@ public class PostController {
         return ResponseEntity.ok().build();
     }
 
+    /**
+     * Add a comment to an existing post given its id.
+     */
     @PostMapping("/api/post/{id}/comment")
     public ResponseEntity<Map<String, Object>> addComment(@PathVariable("id") long id, @RequestBody Post post) {
         LOG.info("Adding comment {} to post.id {}", post, id);
