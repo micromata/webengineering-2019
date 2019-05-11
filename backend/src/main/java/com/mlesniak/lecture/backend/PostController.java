@@ -7,7 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Optional;
 
 /**
  * Controller to handle all CRUD-related post requests.
@@ -47,26 +49,25 @@ public class PostController {
         return postRepository.findAll();
     }
 
-    @GetMapping("/api/post/{id}")
-    public Map<String, Object> postDetails(@PathVariable("id") long id) {
-        HashMap<String, Object> map = new HashMap<>();
-        LOG.info("Retrieving details for post {}", id);
-
-        // Get main post.
-        Optional<Post> oPost = postRepository.findById(id);
-        if (!oPost.isPresent()) {
-            // TODO ML Correct return type
-            return null;
-        }
-        map.put("post", oPost.get());
-
-        // Get all comments for top post.
-        List<Post> comments = postRepository.findComments(id);
-        map.put("comments", comments);
-
-        return map;
-    }
-
+//    @GetMapping("/api/post/{id}")
+//    public Map<String, Object> postDetails(@PathVariable("id") long id) {
+//        HashMap<String, Object> map = new HashMap<>();
+//        LOG.info("Retrieving details for post {}", id);
+//
+//        // Get main post.
+//        Optional<Post> oPost = postRepository.findById(id);
+//        if (!oPost.isPresent()) {
+//            // TODO ML Correct return type
+//            return null;
+//        }
+//        map.put("post", oPost.get());
+//
+//        // Get all comments for top post.
+//        List<Post> comments = postRepository.findComments(id);
+//        map.put("comments", comments);
+//
+//        return map;
+//    }
 
     /**
      * Add method to delete everything. Only used for testing and will later be removed.
@@ -84,16 +85,21 @@ public class PostController {
     @PostMapping("/api/post/{id}/comment")
     public ResponseEntity<Map<String, Object>> addComment(@PathVariable("id") long id, @RequestBody Post post) {
         LOG.info("Adding comment {} to post.id {}", post, id);
-        // Set parent post if available.
+        // Get parent post if available.
         Optional<Post> oParentPost = postRepository.findById(id);
         if (!oParentPost.isPresent()) {
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
                     .body(Collections.singletonMap("error", "Parent post not found"));
         }
-        post.parent = oParentPost.get();
+        Post parentPost = oParentPost.get();
 
+        // Add comment to parent post.
+        parentPost.comments.add(post);
+
+        // Update both.
         postRepository.save(post);
+        postRepository.save(parentPost);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(Collections.singletonMap("post", post));
