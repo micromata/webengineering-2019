@@ -110,4 +110,15 @@ public class PostController {
                 .status(HttpStatus.OK)
                 .body(Collections.singletonMap("post", post));
     }
+
+    // TODO ML Remove this function.
+
+    /**
+     * Debug endpoint for scripts. Will later be removed.
+     */
+    @GetMapping("/api/debug/all")
+    public Iterable<Post> getIdRanges() {
+        LOG.warn("RETURNING ALL POSTS (DEBUGGING!)");
+        return postRepository.findAll();
+    }
 }
