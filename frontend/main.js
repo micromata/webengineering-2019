@@ -57,15 +57,17 @@ class PostItem extends React.Component {
      * Called when a post item is clicked. Currently we simply print the post it, later we will use this information
      * to display this post using routing.
      */
-    itemClicked(postId) {
+    linkClicked(postId) {
         console.log("Post clicked: " + postId);
     }
 
     render() {
         return (
-            <li onClick={() => this.itemClicked(this.props.post.id)}>
+            <li>
                 <span className='number'>{this.props.index + 1}.</span>
-                {this.props.post.title}
+                <span onClick={() => this.linkClicked(this.props.post.id)}>
+                    {this.props.post.title}
+                </span>
                 <div className='date'>
                     <span className='date'>{this.props.post.numberOfComments} comments</span>
                 </div>
