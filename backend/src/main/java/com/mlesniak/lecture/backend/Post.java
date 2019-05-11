@@ -5,8 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Post {
@@ -23,8 +24,10 @@ public class Post {
     public String title;
     public String content;
 
-    @OneToOne
-    public Post parent;
+    // While is is viable to solely refer to a parent post it makes collection of all (transitive) comments rather
+    // cumbersome. Hence we switch the direction and a post refers to all its direct comments.
+    @OneToMany
+    public List<Post> comments;
 
     @Override
     public String toString() {
@@ -33,7 +36,7 @@ public class Post {
                 ", createdAt=" + createdAt +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
-                ", parent=" + parent +
+                ", comments=" + comments +
                 '}';
     }
 }
