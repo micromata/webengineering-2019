@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Controller to handle all CRUD-related post requests.
@@ -60,5 +61,32 @@ public class PostController {
         LOG.warn("Deleting ALL posts");
         postRepository.deleteAll();
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/api/post/{id}/comment")
+    public ResponseEntity<Map<String, Object>> addComment(@PathVariable("id") long id, @RequestBody Post post) {
+        // TODO ML Use JSON annotation to prevent this check.
+        if (post.id != null) {
+            // We have explicit methods to handle single post operations, hence we prevent passing a set id value
+            // using the global POST endpoint.
+            //
+            // Note that this is more a matter of style than a hard rule.
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+
+        LOG.info("Adding comment {} to post.id {}", post, id);
+        // Set parent post if available.
+        Optional<Post> oParentPost = postRepository.findById(id);
+        if (!oParentPost.isPresent()) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(Collections.singletonMap("error", "Parent post not found"));
+        }
+        post.parent = oParentPost.get();
+
+        postRepository.save(post);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(Collections.singletonMap("post", post));
     }
 }
