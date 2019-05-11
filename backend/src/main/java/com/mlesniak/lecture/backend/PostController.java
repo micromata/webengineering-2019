@@ -34,14 +34,6 @@ public class PostController {
 
     @PostMapping("/api/post")
     public ResponseEntity<Map<String, String>> save(@RequestBody Post post) {
-        if (post.id != null) {
-            // We have explicit methods to handle single post operations, hence we prevent passing a set id value
-            // using the global POST endpoint.
-            //
-            // Note that this is more a matter of style than a hard rule.
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
-
         LOG.info("Storing post: {}", post);
         postRepository.save(post);
         return ResponseEntity.status(HttpStatus.OK).body(Collections.emptyMap());
@@ -65,15 +57,6 @@ public class PostController {
 
     @PostMapping("/api/post/{id}/comment")
     public ResponseEntity<Map<String, Object>> addComment(@PathVariable("id") long id, @RequestBody Post post) {
-        // TODO ML Use JSON annotation to prevent this check.
-        if (post.id != null) {
-            // We have explicit methods to handle single post operations, hence we prevent passing a set id value
-            // using the global POST endpoint.
-            //
-            // Note that this is more a matter of style than a hard rule.
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-        }
-
         LOG.info("Adding comment {} to post.id {}", post, id);
         // Set parent post if available.
         Optional<Post> oParentPost = postRepository.findById(id);
