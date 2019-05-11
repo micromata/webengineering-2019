@@ -12,3 +12,32 @@ body {
 .title {
     font-weight: bold;
 }
+
+.date {
+    color: lightgray;
+    float: right;
+}
+
+.postList {
+    padding: 10px;
+    background-color: #f6f6ef;
+    border-bottom: 2px solid rgb(255, 102, 0);
+}
+
+.postList .number {
+    color: #828282;
+    padding-right: 5px;
+}
+
+.postList * > li {
+    margin-bottom: 5px;
+    list-style-type: none;
+    margin-left: -40px;
+}
+
+/* Special debug class */
+.debug {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid red;
+}

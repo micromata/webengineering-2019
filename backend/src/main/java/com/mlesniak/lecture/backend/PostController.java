@@ -51,4 +51,14 @@ public class PostController {
         LOG.info("Retrieving all posts");
         return postRepository.findAll();
     }
+
+    /**
+     * Add method to delete everything. Only used for testing and will later be removed.
+     */
+    @DeleteMapping("/api/post")
+    public ResponseEntity<Void> deleteAll() {
+        LOG.warn("Deleting ALL posts");
+        postRepository.deleteAll();
+        return ResponseEntity.ok().build();
+    }
 }
