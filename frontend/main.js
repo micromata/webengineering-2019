@@ -124,12 +124,18 @@ class PostDetail extends React.Component {
 }
 
 function Comment(props) {
-    // TODO ML Show nested comments.
+    const comments = props.comments.map(comment => {
+        return <Comment key={comment.id} {...comment} margin={props.margin + 20}/>
+    });
+
     // See https://codeburst.io/4-four-ways-to-style-react-components-ac6f323da822 for different ways to style
     // react components.
     const style = {marginLeft: props.margin};
     return (
-        <div style={style}>{props.content}</div>
+        <div>
+            <div style={style}>{props.content}</div>
+            {comments}
+        </div>
     )
 }
 
