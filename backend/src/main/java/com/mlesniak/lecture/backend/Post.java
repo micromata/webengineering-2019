@@ -19,6 +19,8 @@ public class Post {
 
     public Date createdAt;
     public String title;
+    // Currenlty we will use the content field for the URL.
+    // TODO ML Rename to URL and use a dedicated class for comments.
     public String content;
 
     // While is is viable to solely refer to a parent post it makes collection of all (transitive) comments rather
