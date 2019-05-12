@@ -13,29 +13,6 @@
     <!--Empty-->
 </div>
 
-<div class="debug">
-    <form action="#" onsubmit="return call(this);">
-        <input type="text" name="title" autofocus>
-        <input type="submit" value="Submit">
-    </form>
-    <div id="result"></div>
-
-    <script>
-        function call(form) {
-            const value = form['title'].value;
-            fetch('http://localhost:8080/api/post', {
-                method: 'post',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({title: value})
-            });
-            return false;
-        }
-    </script>
-</div>
-
 <!--Note that we use the babel transpiler from JSX to JS inside our browser solely for prototyping. We will later use a -->
 <!--normal build pipeline!-->
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
