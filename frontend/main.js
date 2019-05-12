@@ -124,8 +124,9 @@ class PostDetail extends React.Component {
 }
 
 function Comment(props) {
+    // TODO ML Show nested comments.
     return (
-        <div>Comment {JSON.stringify(props)}</div>
+        <div>{props.content}</div>
     )
 }
 
