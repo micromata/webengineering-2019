@@ -79,8 +79,14 @@ class PostItem extends React.Component {
     }
 }
 
-function PostDetail(props) {
-    return <h1>PostDetails</h1>
+/**
+ * Show details for a single post.
+ */
+class PostDetail extends React.Component {
+    render() {
+        console.log(this.props);
+        return <h1>PostDetails for {this.props.match.params.id}</h1>
+    }
 }
 
 /**
@@ -90,7 +96,7 @@ const routing = (
     <Router>
         <div>
             <Route exact path="/" component={PostList}/>
-            <Route path="/post" component={PostDetail}/>
+            <Route path="/post/:id" component={PostDetail}/>
         </div>
     </Router>
 );
