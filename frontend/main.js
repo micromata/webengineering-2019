@@ -97,7 +97,7 @@ function PostDetail(props) {
 const routing = (
     <Router>
         <div>
-            <Route path="/" component={PostList}/>
+            <Route exact path="/" component={PostList}/>
             <Route path="/post" component={PostDetail}/>
         </div>
     </Router>
