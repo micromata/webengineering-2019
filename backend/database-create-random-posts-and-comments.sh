@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-runs=10
+runs=100
 
 for i in $(seq 1 ${runs})
 do
     echo -n "RUN $i: "
     n=$(($RANDOM % 100))
-    if [[ ${n} -lt 50 ]]
+    if [[ ${n} -lt 10 ]]
     then
         echo "Creating a new post..."
         http POST :8080/api/post title="Title $RANDOM" content="https://en.wikipedia.org/wiki/Special:Random" >/dev/null
