@@ -99,7 +99,18 @@ class PostDetail extends React.Component {
     }
 
     render() {
-        return <pre>{JSON.stringify(this.state.post)}</pre>
+        const {post} = this.state;
+        return (
+            <div>
+                <div>
+                    {post.title}
+                    <a href={post.content}>Link</a>
+                </div>
+                <div>
+                    Comments...
+                </div>
+            </div>
+        )
     }
 }
 
