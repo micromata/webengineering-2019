@@ -2,6 +2,7 @@
 // Note that using a PROPER BUILD SYSTEM (and ES6 modules) is planned for one of the following lectures.
 const Router = window.ReactRouterDOM.BrowserRouter;
 const Route = window.ReactRouterDOM.Route;
+const Link = window.ReactRouterDOM.Link;
 
 
 /**
@@ -72,10 +73,7 @@ class PostItem extends React.Component {
             <li>
                 <span className='number'>{this.props.index + 1}.</span>
                 <a href={this.props.post.content}>{this.props.post.title}</a>
-                <span className='comment'
-                      onClick={() => this.linkClicked(this.props.post.id)}>
-                        {this.props.post.numberOfComments} comments
-                    </span>
+                <Link to="/post" className='comment'>{this.props.post.numberOfComments} comments</Link>
             </li>
         )
     }
