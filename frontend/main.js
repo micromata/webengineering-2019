@@ -81,7 +81,9 @@ class PostDetail extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            post: {}
+            post: {
+                comments: []
+            }
         }
     }
 
@@ -100,6 +102,13 @@ class PostDetail extends React.Component {
 
     render() {
         const {post} = this.state;
+
+        // Render a single comment and all its sub-comments.
+        const comments = post.comments.map(comment => {
+            return <Comment key={comment.id} {...comment}/>
+        });
+
+        // Combine
         return (
             <div>
                 <div>
@@ -107,11 +116,17 @@ class PostDetail extends React.Component {
                     <a href={post.content}>Link</a>
                 </div>
                 <div>
-                    Comments...
+                    {comments}
                 </div>
             </div>
         )
     }
+}
+
+function Comment(props) {
+    return (
+        <div>Comment {JSON.stringify(props)}</div>
+    )
 }
 
 /**
