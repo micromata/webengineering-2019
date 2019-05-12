@@ -66,7 +66,7 @@ class PostItem extends React.Component {
             <li>
                 <span className='number'>{this.props.index + 1}.</span>
                 <a href={this.props.post.content}>{this.props.post.title}</a>
-                <span className='date'
+                <span className='comment'
                       onClick={() => this.linkClicked(this.props.post.id)}>
                         {this.props.post.numberOfComments} comments
                     </span>

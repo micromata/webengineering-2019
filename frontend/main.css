@@ -16,9 +16,13 @@ body {
     font-weight: bold;
 }
 
-.date {
+.comment {
     color: lightgray;
     float: right;
+}
+
+.comment:hover {
+    cursor: pointer;
 }
 
 .postList {
