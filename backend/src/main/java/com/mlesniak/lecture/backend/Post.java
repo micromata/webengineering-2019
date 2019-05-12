@@ -42,10 +42,24 @@ public class Post {
     }
 
     /**
-     * This method is called after an object is loaded.
+     * This method is called after an object is loaded using @PostLoad.
      */
     @PostLoad
-    private void computeStatistics() {
-        numberOfComments = comments.size();
+    public void computeStatistics() {
+        numberOfComments = countComments();
+    }
+
+    /**
+     * Count number of all comments and sub-comments.
+     */
+    private int countComments() {
+        // Number of comments in children.
+        int sum = 0;
+        for (Post comment : comments) {
+            sum += comment.countComments();
+        }
+
+        // Add own comment number.
+        return sum + comments.size();
     }
 }
