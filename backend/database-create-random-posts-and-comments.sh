@@ -9,7 +9,7 @@ do
     if [[ ${n} -lt 50 ]]
     then
         echo "Creating a new post..."
-        http POST :8080/api/post title="Title $RANDOM" >/dev/null
+        http POST :8080/api/post title="Title $RANDOM" content="https://en.wikipedia.org/wiki/Special:Random" >/dev/null
     else
         echo "Creating a comment..."
         postid=$(http GET :8080/api/debug/all|jq '.[] | .id' | sort -R | head -n 1)
