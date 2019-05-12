@@ -1,12 +1,6 @@
 // See https://stackoverflow.com/questions/40764596/using-react-router-with-cdn-and-without-webpack-or-browserify
 // Note that using a PROPER BUILD SYSTEM (and ES6 modules) is planned for one of the following lectures.
-//
-// Ideally, we would like to have URLs without hashes. For this to work, our server must always return the same
-// resource, independently of the path. We will add this feature in the future.
-// TODO ML Fix server URL handling
-// const Router = window.ReactRouterDOM.BrowserRouter;
-const Router = window.ReactRouterDOM.HashRouter;
-
+const Router = window.ReactRouterDOM.BrowserRouter;
 const Route = window.ReactRouterDOM.Route;
 
 
