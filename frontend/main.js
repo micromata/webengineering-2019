@@ -73,7 +73,8 @@ class PostItem extends React.Component {
             <li>
                 <span className='number'>{this.props.index + 1}.</span>
                 <a href={this.props.post.content}>{this.props.post.title}</a>
-                <Link to="/post" className='comment'>{this.props.post.numberOfComments} comments</Link>
+                <Link to={'/post/' + this.props.post.title}
+                      className='comment'>{this.props.post.numberOfComments} comments</Link>
             </li>
         )
     }
