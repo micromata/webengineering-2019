@@ -56,6 +56,7 @@ class PostList extends React.Component {
  * Component for displaying a single post list value.
  */
 class PostItem extends React.Component {
+    // TODO ML Can this be a functional component again?
     constructor(props) {
         super(props);
     }
@@ -66,7 +67,7 @@ class PostItem extends React.Component {
             <li>
                 <span className='number'>{this.props.index + 1}.</span>
                 <a href={post.content}>{post.title}</a>
-                <Link to={'/post/' + post.title}
+                <Link to={'/post/' + post.id}
                       className='comment'>{post.numberOfComments} comments</Link>
             </li>
         )
@@ -77,9 +78,28 @@ class PostItem extends React.Component {
  * Show details for a single post.
  */
 class PostDetail extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            post: {}
+        }
+    }
+
+    // Retrieve all post information.
+    componentDidMount() {
+        fetch('http://localhost:8080/api/post/' + this.props.match.params.id)
+            .then((response) => {
+                return response.json()
+            })
+            .then((data) => {
+                this.setState({
+                    post: data
+                });
+            })
+    }
+
     render() {
-        const {params} = this.props.match
-        return <h1>PostDetails for {params.id}</h1>
+        return <pre>{JSON.stringify(this.state.post)}</pre>
     }
 }
 
