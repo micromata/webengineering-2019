@@ -1,3 +1,15 @@
+// See https://stackoverflow.com/questions/40764596/using-react-router-with-cdn-and-without-webpack-or-browserify
+// Note that using a PROPER BUILD SYSTEM (and ES6 modules) is planned for one of the following lectures.
+//
+// Ideally, we would like to have URLs without hashes. For this to work, our server must always return the same
+// resource, independently of the path. We will add this feature in the future.
+// TODO ML Fix server URL handling
+// const Router = window.ReactRouterDOM.BrowserRouter;
+const Router = window.ReactRouterDOM.HashRouter;
+
+const Route = window.ReactRouterDOM.Route;
+
+
 /**
  * This is a class component with more options for lifecycle management etc.
  * See https://reactjs.org/docs/state-and-lifecycle.html how to move from a functional component to a class component.
@@ -75,8 +87,24 @@ class PostItem extends React.Component {
     }
 }
 
+function PostDetail(props) {
+    return <h1>PostDetails</h1>
+}
+
+/**
+ * Here we are going to define our routing from paths to shown components.
+ */
+const routing = (
+    <Router>
+        <div>
+            <Route path="/" component={PostList}/>
+            <Route path="/post" component={PostDetail}/>
+        </div>
+    </Router>
+);
+
 // See e.g. https://reactjs.org/docs/hello-world.html
 ReactDOM.render(
-    <PostList/>,
+    routing,
     document.getElementById('root')
 );
