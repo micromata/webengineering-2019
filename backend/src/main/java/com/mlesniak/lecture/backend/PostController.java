@@ -114,6 +114,7 @@ public class PostController {
     }
 
     // TODO ML Remove this function.
+    // TODO ML Move to debugging controller for easier overview.
 
     /**
      * Debug endpoint for scripts. Will later be removed.
