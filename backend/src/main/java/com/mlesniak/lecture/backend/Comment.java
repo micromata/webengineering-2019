@@ -8,42 +8,30 @@ import java.util.List;
 
 @Entity
 public class Comment {
-    public Comment() {
-        createdAt = new Date();
-    }
-
     @Id
     @GeneratedValue
     @JsonProperty(access = JsonProperty.Access.READ_ONLY) // See JavaDoc for explanation.
     public Long id;
 
+    // TODO ML Move to BaseClass?
     public Date createdAt;
-    public String title;
-    // Currenlty we will use the content field for the URL.
-    // TODO ML Rename to URL and use a dedicated class for comments.
-    public String content;
+    public String comment;
 
-    // While is is viable to solely refer to a parent post it makes collection of all (transitive) comments rather
-    // cumbersome. Hence we switch the direction and a post refers to all its direct comments.
     @OneToMany
     public List<Comment> comments;
     public Integer numberOfComments;
 
     @Override
     public String toString() {
-        return "Post{" +
+        return "Comment{" +
                 "id=" + id +
                 ", createdAt=" + createdAt +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
+                ", comment='" + comment + '\'' +
                 ", comments=" + comments +
                 ", numberOfComments=" + numberOfComments +
                 '}';
     }
 
-    /**
-     * This method is called after an object is loaded using @PostLoad.
-     */
     @PostLoad
     public void computeStatistics() {
         numberOfComments = countComments();
