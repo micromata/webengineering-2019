@@ -43,7 +43,7 @@ public class CommentController {
         Comment parentComment = oParentComment.get();
 
         // Add comment to parent comment.
-        parentComment.comments.add(comment);
+        parentComment.getComments().add(comment);
 
         // Update both.
         commentRepository.save(comment);

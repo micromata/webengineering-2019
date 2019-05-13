@@ -51,7 +51,7 @@ public class PostController {
         // We can later use our findPosts method to simply return the basic information instead of gathering
         // everything and filter already pre-filled objects.
         List<Post> postsWithoutComments = postRepository.findPosts().stream().map(post -> {
-            post.comments = null;
+            post.getComments().clear();
             return post;
         }).collect(Collectors.toList());
 
@@ -103,7 +103,7 @@ public class PostController {
         Post parentPost = oParentPost.get();
 
         // Add comment to parent post.
-        parentPost.comments.add(comment);
+        parentPost.getComments().add(comment);
 
         // Update both.
         commentRepository.save(comment);

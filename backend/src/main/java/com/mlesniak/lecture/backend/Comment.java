@@ -15,7 +15,7 @@ public class Comment extends RestObject implements Commentable {
     public String comment;
 
     @OneToMany
-    public List<Comment> comments;
+    private List<Comment> comments;
     public Integer numberOfComments;
 
     @Override

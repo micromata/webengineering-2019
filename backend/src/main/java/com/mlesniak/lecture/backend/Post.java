@@ -17,7 +17,7 @@ public class Post extends RestObject implements Commentable {
     public String url;
 
     @OneToMany
-    public List<Comment> comments;
+    private List<Comment> comments;
     public Integer numberOfComments;
 
     @Override
