@@ -14,6 +14,11 @@ public class Comment extends RestObject implements Commentable {
 
     public String comment;
 
+    /**
+     * Note: While I favor consistency this is (or might?) be the case where making an exception from the rule is ok for
+     * now, since our classes are still small. Do not hesitate to replace field access with proper getter and setter
+     * when (not if!) the application grows.
+     */
     @OneToMany
     private List<Comment> comments;
     public Integer numberOfComments;
