@@ -119,8 +119,11 @@ public class PostController {
      * Debug endpoint for scripts. Will later be removed.
      */
     @GetMapping("/api/debug/all")
-    public Iterable<Post> getIdRanges() {
+    public Iterable<Object> getIdRanges() {
         LOG.warn("RETURNING ALL POSTS (DEBUGGING!)");
-        return postRepository.findAll();
+        LinkedList<Object> objects = new LinkedList<>();
+        postRepository.findAll().forEach(c -> objects.add(c));
+        commentRepository.findAll().forEach(c -> objects.add(c));
+        return objects;
     }
 }
