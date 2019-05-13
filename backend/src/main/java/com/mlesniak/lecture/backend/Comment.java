@@ -7,8 +7,8 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Post {
-    public Post() {
+public class Comment {
+    public Comment() {
         createdAt = new Date();
     }
 
@@ -52,7 +52,7 @@ public class Post {
     /**
      * Count number of all comments and sub-comments.
      */
-    private int countComments() {
+    public int countComments() {
         // Number of comments in children.
         int sum = 0;
         for (Comment comment : comments) {

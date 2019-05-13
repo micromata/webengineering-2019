@@ -22,6 +22,7 @@ public class PostController {
 
     // TODO ML We should use a service here.
     private PostRepository postRepository;
+    private CommentRepository commentRepository;
 
     // See e.g. https://www.vojtechruzicka.com/field-dependency-injection-considered-harmful/
     //
@@ -29,8 +30,9 @@ public class PostController {
     // as immutable objects and to ensure that required dependencies are not null. Furthermore, constructor-injected
     // components are always returned to client (calling) code in a fully initialized state.
     @Autowired
-    public PostController(PostRepository postRepository) {
+    public PostController(PostRepository postRepository, CommentRepository commentRepository) {
         this.postRepository = postRepository;
+        this.commentRepository = commentRepository;
     }
 
     @PostMapping("/api/post")
@@ -89,8 +91,8 @@ public class PostController {
      * Add a comment to an existing post given its id.
      */
     @PostMapping("/api/post/{id}/comment")
-    public ResponseEntity<Map<String, Object>> addPostComment(@PathVariable("id") long id, @RequestBody Post post) {
-        LOG.info("Adding comment {} to post.id {}", post, id);
+    public ResponseEntity<Map<String, Object>> addPostComment(@PathVariable("id") long id, @RequestBody Comment comment) {
+        LOG.info("Adding comment {} to post.id {}", comment, id);
         // Get parent post if available.
         Optional<Post> oParentPost = postRepository.findById(id);
         if (!oParentPost.isPresent()) {
@@ -101,14 +103,14 @@ public class PostController {
         Post parentPost = oParentPost.get();
 
         // Add comment to parent post.
-        parentPost.comments.add(post);
+        parentPost.comments.add(comment);
 
         // Update both.
-        postRepository.save(post);
+        commentRepository.save(comment);
         postRepository.save(parentPost);
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(Collections.singletonMap("post", post));
+                .body(Collections.singletonMap("post", comment));
     }
 
     // TODO ML Remove this function.
