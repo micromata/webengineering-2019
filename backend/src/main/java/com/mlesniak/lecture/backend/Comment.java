@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Comment extends RestObject {
+public class Comment extends RestObject implements Commentable {
     @Id
     @GeneratedValue
     @JsonProperty(access = JsonProperty.Access.READ_ONLY) // See JavaDoc for explanation.
@@ -34,17 +34,20 @@ public class Comment extends RestObject {
         numberOfComments = countComments();
     }
 
-    /**
-     * Count number of all comments and sub-comments.
-     */
+    @Override
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    @Override
     public int countComments() {
         // Number of comments in children.
         int sum = 0;
-        for (Comment comment : comments) {
+        for (Comment comment : getComments()) {
             sum += comment.countComments();
         }
 
         // Add own comment number.
-        return sum + comments.size();
+        return sum + getComments().size();
     }
 }
