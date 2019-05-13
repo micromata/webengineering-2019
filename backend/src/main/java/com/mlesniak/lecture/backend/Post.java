@@ -7,13 +7,12 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Post {
+public class Post extends RestObject {
     @Id
     @GeneratedValue
     @JsonProperty(access = JsonProperty.Access.READ_ONLY) // See JavaDoc for explanation.
     public Long id;
 
-    public Date createdAt;
     public String title;
     public String url;
 

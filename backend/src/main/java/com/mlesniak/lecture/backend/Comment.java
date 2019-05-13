@@ -3,18 +3,15 @@ package com.mlesniak.lecture.backend;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Comment {
+public class Comment extends RestObject {
     @Id
     @GeneratedValue
     @JsonProperty(access = JsonProperty.Access.READ_ONLY) // See JavaDoc for explanation.
     public Long id;
 
-    // TODO ML Move to BaseClass?
-    public Date createdAt;
     public String comment;
 
     @OneToMany
