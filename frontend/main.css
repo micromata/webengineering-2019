@@ -68,7 +68,9 @@ body {
 
 /*TODO ML name clash comment and postcomment */
 .postcomment {
-    padding: 10px 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
 }
 
 .commentDate {
