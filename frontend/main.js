@@ -147,17 +147,23 @@ function Comment(props) {
     )
 }
 
+function Header(props) {
+    return (
+        <div className="header">
+            <Link to='/'>
+                <span className="logo">L</span><span className="title">Lecture News</span>
+            </Link>
+        </div>
+    );
+}
+
 /**
  * Here we are going to define our routing from paths to shown components.
  */
 const routing = (
     <Router>
         <div>
-            <div className="header">
-                <Link to='/'>
-                    <span className="logo">L</span><span className="title">Lecture News</span>
-                </Link>
-            </div>
+            <Header/>
             <Route exact path="/" component={PostList}/>
             <Route path="/post/:id" component={PostDetail}/>
         </div>
