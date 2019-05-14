@@ -174,7 +174,7 @@ const routing = (
         <div>
             <Header/>
             <Route exact path="/" component={PostList}/>
-            <Route path="/post/new" component={PostNew}/>
+            <Route exact path="/post/new" component={PostNew}/>
             <Route path="/post/:id" component={PostDetail}/>
         </div>
     </Router>
