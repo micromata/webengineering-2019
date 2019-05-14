@@ -13,6 +13,11 @@ do
         http POST :8080/api/post title="Title $RANDOM" url="https://en.wikipedia.org/wiki/Special:Random" >/dev/null
     else
         echo -n "Creating a comment..."
+
+        # Determine comment text
+        len=$(($RANDOM % 10))
+        text=$(http https://baconipsum.com/api/\?type\=meat-and-filler\&sentences\=$len |jq -r '.[0]')
+
         n=$(($RANDOM % 100))
         if [[ ${n} -lt 30 ]]
         then
@@ -23,7 +28,7 @@ do
                 sort -R |\
                 head -n 1 |\
                 cut -d' ' -f1)
-            http -v POST :8080/api/comment/${postid}/comment comment="Comment/Comment $RANDOM" >/dev/null
+            http -v POST :8080/api/comment/${postid}/comment comment="$text" >/dev/null
             echo "for a comment"
         else
             # Create comment to post for post
@@ -33,7 +38,7 @@ do
                 sort -R |\
                 head -n 1 |\
                 cut -d' ' -f1)
-            http -v POST :8080/api/post/${postid}/comment comment="Comment/Post $RANDOM" >/dev/null
+            http -v POST :8080/api/post/${postid}/comment comment="$text" >/dev/null
             echo "for a post"
         fi
     fi
