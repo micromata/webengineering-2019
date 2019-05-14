@@ -48,11 +48,14 @@ body {
     margin-left: -40px;
 }
 
-/* Special debug class */
-.debug {
-    margin-top: 20px;
+.post .title {
     padding: 10px;
-    border: 1px solid red;
+}
+
+.post .title * > .host {
+    color: darkgray;
+    padding-left: 10px;
+    font-size: smaller;
 }
 
 a {

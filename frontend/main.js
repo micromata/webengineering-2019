@@ -102,6 +102,9 @@ class PostDetail extends React.Component {
 
     render() {
         const {post} = this.state;
+        if (!post.url) {
+            return <div></div>;
+        }
 
         // Render a single comment and all its sub-comments.
         const comments = post.comments.map(comment => {
@@ -110,16 +113,20 @@ class PostDetail extends React.Component {
 
         // Combine
         return (
-            <div>
-                <div>
-                    {post.title}
-                    <a href={post.content}>Link</a>
+            <div className='post'>
+                <div className='title'>
+                    <a href={post.url}>
+                        {post.title}
+                        <span className='host'>
+                            ({new URL(post.url).hostname})
+                        </span>
+                    </a>
                 </div>
                 <div>
                     {comments}
                 </div>
             </div>
-        )
+        );
     }
 }
 
