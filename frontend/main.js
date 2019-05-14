@@ -164,6 +164,8 @@ class PostNew extends React.Component {
         super(props);
         this.state = {value: ''};
 
+        // See https://medium.freecodecamp.org/this-is-why-we-need-to-bind-event-handlers-in-class-components-in-react-f7ea1a6f93eb
+        // for a very detailed explanation of this.
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
