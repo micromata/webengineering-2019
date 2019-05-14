@@ -66,7 +66,7 @@ class PostItem extends React.Component {
         return (
             <li>
                 <span className='number'>{this.props.index + 1}.</span>
-                <a href={post.content}>{post.title}</a>
+                <a href={post.url}>{post.title}</a>
                 <Link to={'/post/' + post.id}
                       className='comment'>{post.numberOfComments} comments</Link>
             </li>
@@ -133,7 +133,7 @@ function Comment(props) {
     const style = {marginLeft: props.margin};
     return (
         <div>
-            <div style={style}>{props.content}</div>
+            <div style={style}>{props.comment}</div>
             {comments}
         </div>
     )
