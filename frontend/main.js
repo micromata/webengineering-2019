@@ -153,6 +153,11 @@ function Comment(props) {
 const routing = (
     <Router>
         <div>
+            <div className="header">
+                <Link to='/'>
+                    <span className="logo">L</span><span className="title">Lecture News</span>
+                </Link>
+            </div>
             <Route exact path="/" component={PostList}/>
             <Route path="/post/:id" component={PostDetail}/>
         </div>
