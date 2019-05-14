@@ -3,6 +3,7 @@
 const Router = window.ReactRouterDOM.BrowserRouter;
 const Route = window.ReactRouterDOM.Route;
 const Link = window.ReactRouterDOM.Link;
+const Switch = window.ReactRouterDOM.Switch;
 
 
 /**
@@ -173,9 +174,12 @@ const routing = (
     <Router>
         <div>
             <Header/>
-            <Route exact path="/" component={PostList}/>
-            <Route exact path="/post/new" component={PostNew}/>
-            <Route path="/post/:id" component={PostDetail}/>
+            {/*See https://reacttraining.com/react-router/web/api/Switch*/}
+            <Switch>
+                <Route exact path="/" component={PostList}/>
+                <Route exact path="/post/new" component={PostNew}/>
+                <Route path="/post/:id" component={PostDetail}/>
+            </Switch>
         </div>
     </Router>
 );
