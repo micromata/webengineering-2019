@@ -162,7 +162,13 @@ function Header(props) {
 class PostNew extends React.Component {
     render() {
         return <div>
-            <h1>New post</h1>
+            <form>
+                <label>
+                    Name:
+                    <input type="text" name="name"/>
+                </label>
+                <input type="submit" value="Submit"/>
+            </form>
         </div>;
     }
 }
