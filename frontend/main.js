@@ -139,7 +139,7 @@ function Comment(props) {
     return (
         <div className='postcomment'>
             <div style={style}>
-                <div>{props.createdAt}</div>
+                <div className='commentDate'>{props.createdAt}</div>
                 {props.comment}
             </div>
             {comments}

@@ -48,19 +48,27 @@ body {
     margin-left: -40px;
 }
 
+.post {
+    padding-left: 10px;
+}
+
 .post .title {
-    padding: 10px;
+    padding: 10px 0px;
 }
 
 .post .title * > .host {
     color: darkgray;
-    padding-left: 10px;
     font-size: smaller;
 }
 
 /*TODO ML name clash comment and postcomment */
 .postcomment {
     padding: 10px 0px;
+}
+
+.commentDate {
+    color: darkgray;
+    font-size: 12px;
 }
 
 a {
