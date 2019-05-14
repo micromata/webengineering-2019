@@ -153,8 +153,17 @@ function Header(props) {
             <Link to='/'>
                 <span className="logo">L</span><span className="title">Lecture News</span>
             </Link>
+            <Link to='/post/new' className='header-link'>new</Link>
         </div>
     );
+}
+
+class PostNew extends React.Component {
+    render() {
+        return <div>
+            <h1>New post</h1>
+        </div>;
+    }
 }
 
 /**
@@ -165,6 +174,7 @@ const routing = (
         <div>
             <Header/>
             <Route exact path="/" component={PostList}/>
+            <Route path="/post/new" component={PostNew}/>
             <Route path="/post/:id" component={PostDetail}/>
         </div>
     </Router>

@@ -16,6 +16,10 @@ body {
     font-family: Verdana;
 }
 
+.header .title {
+    font-weight: bold;
+}
+
 .title-header {
     font-weight: bold;
 }
@@ -82,4 +86,8 @@ a {
     padding: 2px 4px;
     border: 1px solid white;
     margin-right: 5px;
+}
+
+.header-link {
+    padding: 0px 10px;
 }
