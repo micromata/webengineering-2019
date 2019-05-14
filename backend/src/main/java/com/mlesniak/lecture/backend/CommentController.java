@@ -32,7 +32,7 @@ public class CommentController {
      */
     @PostMapping("/api/comment/{id}/comment")
     public ResponseEntity<Map<String, Object>> addComment(@PathVariable("id") long id, @RequestBody Comment comment) {
-        LOG.info("Adding comment {} to post.id {}", comment, id);
+        LOG.info("Adding comment {} to comment.id {}", comment, id);
         // Get parent comment if available.
         Optional<Comment> oParentComment = commentRepository.findById(id);
         if (!oParentComment.isPresent()) {
