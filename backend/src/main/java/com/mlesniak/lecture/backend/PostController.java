@@ -82,8 +82,9 @@ public class PostController {
      */
     @DeleteMapping("/api/post")
     public ResponseEntity<Void> deleteAllPosts() {
-        LOG.warn("Deleting ALL posts");
+        LOG.warn("Deleting ALL posts and comments");
         postRepository.deleteAll();
+        commentRepository.deleteAll();
         return ResponseEntity.ok().build();
     }
 
@@ -121,7 +122,6 @@ public class PostController {
      */
     @GetMapping("/api/debug/all")
     public Iterable<Object> getIdRanges() {
-        LOG.warn("RETURNING ALL POSTS (DEBUGGING!)");
         LinkedList<Object> objects = new LinkedList<>();
         postRepository.findAll().forEach(c -> objects.add(c));
         commentRepository.findAll().forEach(c -> objects.add(c));
