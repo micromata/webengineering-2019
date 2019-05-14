@@ -116,7 +116,7 @@ class PostDetail extends React.Component {
             <div className='post'>
                 <div className='title'>
                     <a href={post.url}>
-                        {post.title}
+                        <span className='title-header'>{post.title}</span>
                         <span className='host'>
                             ({new URL(post.url).hostname})
                         </span>

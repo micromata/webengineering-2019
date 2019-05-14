@@ -16,7 +16,7 @@ body {
     font-family: Verdana;
 }
 
-.title {
+.title-header {
     font-weight: bold;
 }
 
@@ -58,7 +58,8 @@ body {
 
 .post .title * > .host {
     color: darkgray;
-    font-size: smaller;
+    font-size: 12px;
+    padding-left: 10px;
 }
 
 /*TODO ML name clash comment and postcomment */
