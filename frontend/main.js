@@ -108,7 +108,7 @@ class PostDetail extends React.Component {
 
         // Render a single comment and all its sub-comments.
         const comments = post.comments.map(comment => {
-            return <Comment key={comment.id} {...comment} margin={40}/>
+            return <Comment key={comment.id} {...comment} margin={0} increase={30}/>
         });
 
         // Combine
@@ -132,15 +132,16 @@ class PostDetail extends React.Component {
 
 function Comment(props) {
     const comments = props.comments.map(comment => {
-        return <Comment key={comment.id} {...comment} margin={props.margin + 20}/>
+        return <Comment key={comment.id} {...comment} margin={props.margin + props.increase}/>
     });
 
-    // See https://codeburst.io/4-four-ways-to-style-react-components-ac6f323da822 for different ways to style
-    // react components.
     const style = {marginLeft: props.margin};
     return (
-        <div>
-            <div style={style}>{props.comment}</div>
+        <div className='postcomment'>
+            <div style={style}>
+                <div>{props.createdAt}</div>
+                {props.comment}
+            </div>
             {comments}
         </div>
     )
