@@ -1,5 +1,7 @@
-package com.mlesniak.lecture.backend;
+package com.mlesniak.lecture.backend.post;
 
+import com.mlesniak.lecture.backend.comment.Comment;
+import com.mlesniak.lecture.backend.comment.CommentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

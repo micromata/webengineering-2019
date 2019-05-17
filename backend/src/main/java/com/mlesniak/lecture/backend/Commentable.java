@@ -1,5 +1,7 @@
 package com.mlesniak.lecture.backend;
 
+import com.mlesniak.lecture.backend.comment.Comment;
+
 import java.util.List;
 
 /**

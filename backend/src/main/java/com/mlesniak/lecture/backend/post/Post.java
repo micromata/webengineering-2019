@@ -1,6 +1,9 @@
-package com.mlesniak.lecture.backend;
+package com.mlesniak.lecture.backend.post;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mlesniak.lecture.backend.Commentable;
+import com.mlesniak.lecture.backend.RestObject;
+import com.mlesniak.lecture.backend.comment.Comment;
 
 import javax.persistence.*;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.mlesniak.lecture.backend;
+package com.mlesniak.lecture.backend.comment;
 
 import org.springframework.data.repository.CrudRepository;
 
