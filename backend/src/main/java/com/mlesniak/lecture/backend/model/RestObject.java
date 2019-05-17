@@ -1,4 +1,4 @@
-package com.mlesniak.lecture.backend;
+package com.mlesniak.lecture.backend.model;
 
 import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;

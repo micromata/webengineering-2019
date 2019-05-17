@@ -1,5 +1,6 @@
-package com.mlesniak.lecture.backend.post;
+package com.mlesniak.lecture.backend.repository;
 
+import com.mlesniak.lecture.backend.model.Post;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 

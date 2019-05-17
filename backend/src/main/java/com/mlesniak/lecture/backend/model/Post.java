@@ -1,20 +1,19 @@
-package com.mlesniak.lecture.backend.comment;
+package com.mlesniak.lecture.backend.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mlesniak.lecture.backend.Commentable;
-import com.mlesniak.lecture.backend.RestObject;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Comment extends RestObject implements Commentable {
+public class Post extends RestObject implements Commentable {
     @Id
     @GeneratedValue
     @JsonProperty(access = JsonProperty.Access.READ_ONLY) // See JavaDoc for explanation.
     public Long id;
 
-    public String comment;
+    public String title;
+    public String url;
 
     /**
      * Note: While I favor consistency this is (or might?) be the case where making an exception from the rule is ok for
@@ -27,10 +26,11 @@ public class Comment extends RestObject implements Commentable {
 
     @Override
     public String toString() {
-        return "Comment{" +
+        return "Post{" +
                 "id=" + id +
                 ", createdAt=" + createdAt +
-                ", comment='" + comment + '\'' +
+                ", title='" + title + '\'' +
+                ", url='" + url + '\'' +
                 ", comments=" + comments +
                 ", numberOfComments=" + numberOfComments +
                 '}';
@@ -41,11 +41,13 @@ public class Comment extends RestObject implements Commentable {
         numberOfComments = countComments();
     }
 
-    @Override
     public List<Comment> getComments() {
         return comments;
     }
 
+    /**
+     * Count number of all comments and sub-comments.
+     */
     @Override
     public int countComments() {
         // Number of comments in children.

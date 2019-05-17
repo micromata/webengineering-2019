@@ -1,6 +1,4 @@
-package com.mlesniak.lecture.backend;
-
-import com.mlesniak.lecture.backend.comment.Comment;
+package com.mlesniak.lecture.backend.model;
 
 import java.util.List;
 
