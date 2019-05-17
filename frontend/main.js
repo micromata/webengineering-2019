@@ -191,8 +191,9 @@ class PostNew extends React.Component {
                 url: this.state.url
             })
         });
-        // TODO ML Add redirect
         event.preventDefault();
+        // TODO ML Update main component on redirect.
+        this.props.history.push('/');
     }
 
     render() {
@@ -200,7 +201,7 @@ class PostNew extends React.Component {
             <form onSubmit={this.handleSubmit}>
                 <label>
                     Title
-                    <input type="text" name="title" autofocus="autofocus" value={this.state.value}
+                    <input type="text" name="title" autoFocus={true} value={this.state.value}
                            onChange={this.handleChange}/>
                 </label>
                 <label>
