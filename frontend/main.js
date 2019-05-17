@@ -180,6 +180,7 @@ class PostNew extends React.Component {
     }
 
     handleSubmit(event) {
+        event.preventDefault();
         fetch('http://localhost:8080/api/post', {
             method: 'post',
             headers: {
@@ -190,10 +191,11 @@ class PostNew extends React.Component {
                 title: this.state.title,
                 url: this.state.url
             })
-        });
-        event.preventDefault();
-        // TODO ML Update main component on redirect.
-        this.props.history.push('/');
+        })
+            .then(response => {
+                // Redirect only a successful update.
+                this.props.history.push('/');
+            });
     }
 
     render() {
