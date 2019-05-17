@@ -93,3 +93,25 @@ a {
 .header-link {
     padding: 0px 10px;
 }
+
+form {
+    padding: 10px;
+}
+
+label > span {
+    width: 30px;
+    display: inline-block;
+    color: gray;
+}
+
+.button {
+    margin-left: 35px;
+    font-size: 30px;
+}
+
+input[type=text] {
+    margin-left: 5px;
+    margin-top: 3px;
+    width: 300px;
+    box-sizing: border-box;
+}

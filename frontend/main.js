@@ -201,16 +201,22 @@ class PostNew extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <label>
-                    Title
-                    <input type="text" name="title" autoFocus={true} value={this.state.value}
-                           onChange={this.handleChange}/>
-                </label>
-                <label>
-                    URL
-                    <input type="text" name="url" value={this.state.url} onChange={this.handleChange}/>
-                </label>
-                <input type="submit" value="Submit"/>
+                <div>
+                    <label>
+                        <span>title</span>
+                        <input type="text" name="title" autoFocus={true} value={this.state.title}
+                               onChange={this.handleChange}/>
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <span>url</span>
+                        <input type="text" name="url" value={this.state.url} onChange={this.handleChange}/>
+                    </label>
+                </div>
+                <div className='button'>
+                    <input type="submit" value="submit"/>
+                </div>
             </form>
         );
     }
