@@ -162,7 +162,10 @@ function Header(props) {
 class PostNew extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {value: ''};
+        this.state = {
+            title: '',
+            url: ''
+        };
 
         // See https://medium.freecodecamp.org/this-is-why-we-need-to-bind-event-handlers-in-class-components-in-react-f7ea1a6f93eb
         // for a very detailed explanation of this.
@@ -170,12 +173,14 @@ class PostNew extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(event) {
-        this.setState({value: event.target.value});
+    // See https://medium.com/@tmkelly28/handling-multiple-form-inputs-in-react-c5eb83755d15 for working with forms
+    // with multiple elements.
+    handleChange(evt) {
+        this.setState({[evt.target.name]: evt.target.value});
     }
 
     handleSubmit(event) {
-        alert('A name was submitted: ' + this.state.value);
+        alert('A name was submitted: ' + JSON.stringify(this.state));
         event.preventDefault();
     }
 
@@ -183,8 +188,13 @@ class PostNew extends React.Component {
         return (
             <form onSubmit={this.handleSubmit}>
                 <label>
-                    Name:
-                    <input type="text" value={this.state.value} onChange={this.handleChange}/>
+                    Title
+                    <input type="text" name="title" autofocus="autofocus" value={this.state.value}
+                           onChange={this.handleChange}/>
+                </label>
+                <label>
+                    URL
+                    <input type="text" name="url" value={this.state.url} onChange={this.handleChange}/>
                 </label>
                 <input type="submit" value="Submit"/>
             </form>
