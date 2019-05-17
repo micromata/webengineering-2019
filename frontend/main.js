@@ -180,7 +180,18 @@ class PostNew extends React.Component {
     }
 
     handleSubmit(event) {
-        alert('A name was submitted: ' + JSON.stringify(this.state));
+        fetch('http://localhost:8080/api/post', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                title: this.state.title,
+                url: this.state.url
+            })
+        });
+        // TODO ML Add redirect
         event.preventDefault();
     }
 
