@@ -9,12 +9,12 @@ services:
     environment:
       POSTGRES_PASSWORD: docker
     volumes:
-      - ../database:/var/lib/postgresql/data
+      - ./database:/var/lib/postgresql/data
     ports:
       - 5433:5432
 
   backend:
-    build: .
+    build: backend/.
     image: news/backend:latest
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/postgres
@@ -23,3 +23,9 @@ services:
     ports:
       # local:container
       - 8080:8080
+
+  frontend:
+    build: frontend/.
+    image: news/frontend:latest
+    ports:
+      - 8081:8081
