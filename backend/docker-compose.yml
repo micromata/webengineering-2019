@@ -12,3 +12,14 @@ services:
       - ../database:/var/lib/postgresql/data
     ports:
       - 5433:5432
+
+  backend:
+    build: .
+    image: news/backend:latest
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/postgres
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: docker
+    ports:
+      # local:container
+      - 8080:8080
