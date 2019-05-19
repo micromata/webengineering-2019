@@ -5,7 +5,9 @@ const Route = window.ReactRouterDOM.Route;
 const Link = window.ReactRouterDOM.Link;
 const Switch = window.ReactRouterDOM.Switch;
 
-const backend = "https://web-news-backend.herokuapp.com"; // BACKEND
+// We will later use an environment variable in the build process, but for now we change this line while building
+// the docker container.
+const backend = "http://localhost:8080"; // BACKEND
 
 /**
  * This is a class component with more options for lifecycle management etc.
