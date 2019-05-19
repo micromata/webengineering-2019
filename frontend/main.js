@@ -205,8 +205,8 @@ class CommentReply extends React.Component {
         }
 
         return (
-            <form onSubmit={this.handleSubmit}>
-                <div className='comment-input'>
+            <form onSubmit={this.handleSubmit} className='comment-input'>
+                <div>
                     <textarea name='comment' value={this.state.title} onChange={this.handleChange}
                               autoFocus={true}></textarea>
                 </div>

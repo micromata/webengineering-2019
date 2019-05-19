@@ -118,8 +118,13 @@ input[type=text] {
 
 textarea {
     min-width: 100%;
+    height: 100px;
 }
 
 .reply {
     color: darkgray;
+}
+
+.comment-input {
+    margin-top: 20px;
 }
