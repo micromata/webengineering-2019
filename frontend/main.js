@@ -145,10 +145,19 @@ function Comment(props) {
             <div style={style}>
                 <div className='commentDate'>{props.createdAt}</div>
                 {props.comment}
+                <CommentReply id={props.id}/>
             </div>
             {comments}
         </div>
     )
+}
+
+function CommentReply(props) {
+    return (
+        <div style={{backgroundColor: 'gray'}}>
+            Reply to {props.id}
+        </div>
+    );
 }
 
 function Header(props) {
