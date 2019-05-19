@@ -1,6 +1,9 @@
 # Postgres configuration
 # TODO ML Think about showing flyway etc.?
 
+server:
+  port: ${PORT:8080}
+
 logging:
   level:
     ROOT: WARN
