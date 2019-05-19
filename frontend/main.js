@@ -152,6 +152,10 @@ function Comment(props) {
     )
 }
 
+/**
+ * Note that this is the reply for comments. We will have a direct reply for
+ * posts afterwards!
+ */
 class CommentReply extends React.Component {
     constructor(props) {
         super(props);
