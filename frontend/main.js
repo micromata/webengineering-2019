@@ -166,6 +166,11 @@ class CommentReply extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.toggleVisibility = this.toggleVisibility.bind(this);
+    }
+
+    toggleVisibility(evt) {
+        this.setState({['visible']: true});
     }
 
     // See https://medium.com/@tmkelly28/handling-multiple-form-inputs-in-react-c5eb83755d15 for working with forms
@@ -195,14 +200,15 @@ class CommentReply extends React.Component {
     render() {
         if (!this.state.visible) {
             return (
-                <div className='reply'>reply</div>
+                <div className='reply' onClick={this.toggleVisibility}>reply</div>
             );
         }
 
         return (
             <form onSubmit={this.handleSubmit}>
                 <div className='comment-input'>
-                    <textarea name='comment' value={this.state.title} onChange={this.handleChange}></textarea>
+                    <textarea name='comment' value={this.state.title} onChange={this.handleChange}
+                              autoFocus={true}></textarea>
                 </div>
                 <div className='button'>
                     <input type="submit" value="submit"/>
