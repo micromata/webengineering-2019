@@ -153,11 +153,51 @@ function Comment(props) {
 }
 
 class CommentReply extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            comment: ''
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    // See https://medium.com/@tmkelly28/handling-multiple-form-inputs-in-react-c5eb83755d15 for working with forms
+    // with multiple elements.
+    handleChange(evt) {
+        this.setState({[evt.target.name]: evt.target.value});
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        // fetch(backend + '/api/post', {
+        //     method: 'post',
+        //     headers: {
+        //         'Accept': 'application/json',
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         title: this.state.title,
+        //         url: this.state.url
+        //     })
+        // })
+        //     .then(response => {
+        //         // Redirect only a successful update.
+        //         this.props.history.push('/');
+        //     });
+    }
+
     render() {
         return (
-            <div style={{backgroundColor: 'gray'}}>
-                Reply to {this.props.id}
-            </div>
+            <form onSubmit={this.handleSubmit}>
+                <div>
+                    <textarea name='comment'></textarea>
+                </div>
+                <div className='button'>
+                    <input type="submit" value="submit"/>
+                </div>
+            </form>
         );
     }
 }
