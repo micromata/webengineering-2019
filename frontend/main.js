@@ -152,12 +152,14 @@ function Comment(props) {
     )
 }
 
-function CommentReply(props) {
-    return (
-        <div style={{backgroundColor: 'gray'}}>
-            Reply to {props.id}
-        </div>
-    );
+class CommentReply extends React.Component {
+    render() {
+        return (
+            <div style={{backgroundColor: 'gray'}}>
+                Reply to {this.props.id}
+            </div>
+        );
+    }
 }
 
 function Header(props) {
