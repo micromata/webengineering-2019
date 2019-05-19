@@ -17,9 +17,7 @@ services:
     build: backend/.
     image: news/backend:latest
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/postgres
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: docker
+      DATABASE_URL: postgresql://postgres:docker@database:5432/postgres
     ports:
       # local:container
       - 8080:8080
