@@ -3,7 +3,13 @@
 # Stop on error
 set -e
 
-apps=(backend frontend)
+if [ -n "$1" ]
+then
+    apps=( $1 )
+else
+    apps=(backend frontend)
+fi
+
 for name in "${apps[@]}"
 do
     echo "*** Deploying $name ***"
