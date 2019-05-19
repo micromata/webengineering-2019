@@ -5,6 +5,7 @@ const Route = window.ReactRouterDOM.Route;
 const Link = window.ReactRouterDOM.Link;
 const Switch = window.ReactRouterDOM.Switch;
 
+const backend = "https://web-news-backend.herokuapp.com"; // BACKEND
 
 /**
  * This is a class component with more options for lifecycle management etc.
@@ -23,7 +24,7 @@ class PostList extends React.Component {
         // https://stackoverflow.com/questions/20279484/how-to-access-the-correct-this-inside-a-callback for the
         // beginning of an explanation. Fortunately, we can use ES6 and are fine, here.
         //
-        fetch('http://localhost:8080/api/post')
+        fetch(backend + '/api/post')
             .then((response) => {
                 return response.json()
             })
@@ -90,7 +91,7 @@ class PostDetail extends React.Component {
 
     // Retrieve all post information.
     componentDidMount() {
-        fetch('http://localhost:8080/api/post/' + this.props.match.params.id)
+        fetch(backend + '/api/post/' + this.props.match.params.id)
             .then((response) => {
                 return response.json()
             })
@@ -181,7 +182,7 @@ class PostNew extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        fetch('http://localhost:8080/api/post', {
+        fetch(backend + '/api/post', {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
