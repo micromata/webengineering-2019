@@ -94,7 +94,7 @@ a {
     padding: 0px 10px;
 }
 
-form {
+.new-post {
     padding: 10px;
 }
 
@@ -104,9 +104,9 @@ label > span {
     color: gray;
 }
 
-.button {
+.new-post > .button {
     margin-left: 35px;
-    font-size: 30px;
+    margin-top: 10px;
 }
 
 input[type=text] {
@@ -114,4 +114,8 @@ input[type=text] {
     margin-top: 3px;
     width: 300px;
     box-sizing: border-box;
+}
+
+textarea {
+    min-width: 100%;
 }

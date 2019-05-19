@@ -194,7 +194,7 @@ class CommentReply extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <div>
+                <div className='comment-input'>
                     <textarea name='comment' value={this.state.title} onChange={this.handleChange}></textarea>
                 </div>
                 <div className='button'>
@@ -257,7 +257,7 @@ class PostNew extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} className='new-post'>
                 <div>
                     <label>
                         <span>title</span>
