@@ -10,5 +10,5 @@ app.get('*', (req, res) => {
 });
 
 // Start listening.
-// TODO ML Use environment variable here.
-app.listen(8081);
+const port = process.env.PORT || 8081;
+app.listen(port);
