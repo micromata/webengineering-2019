@@ -160,7 +160,8 @@ class CommentReply extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            comment: ''
+            comment: '',
+            visible: false
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -192,6 +193,12 @@ class CommentReply extends React.Component {
     }
 
     render() {
+        if (!this.state.visible) {
+            return (
+                <div className='reply'>reply</div>
+            );
+        }
+
         return (
             <form onSubmit={this.handleSubmit}>
                 <div className='comment-input'>

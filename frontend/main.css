@@ -119,3 +119,7 @@ input[type=text] {
 textarea {
     min-width: 100%;
 }
+
+.reply {
+    color: darkgray;
+}
