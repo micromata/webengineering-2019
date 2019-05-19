@@ -175,28 +175,27 @@ class CommentReply extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        // fetch(backend + '/api/post', {
-        //     method: 'post',
-        //     headers: {
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         title: this.state.title,
-        //         url: this.state.url
-        //     })
-        // })
-        //     .then(response => {
-        //         // Redirect only a successful update.
-        //         this.props.history.push('/');
-        //     });
+        // TODO ML Prevent empty comments?
+        fetch(backend + '/api/comment/' + this.props.id + '/comment', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                comment: this.state.comment,
+            })
+        })
+            .then(response => {
+                // TODO ML refresh the parent component
+            });
     }
 
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
                 <div>
-                    <textarea name='comment'></textarea>
+                    <textarea name='comment' value={this.state.title} onChange={this.handleChange}></textarea>
                 </div>
                 <div className='button'>
                     <input type="submit" value="submit"/>
