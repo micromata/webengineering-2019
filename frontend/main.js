@@ -152,6 +152,8 @@ function Comment(props) {
     )
 }
 
+// TODO ML fix bug with indentation of comments?
+
 /**
  * Note that this is the reply for comments. We will have a direct reply for
  * posts afterwards!
