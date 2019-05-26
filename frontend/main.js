@@ -90,11 +90,18 @@ class PostDetail extends React.Component {
             }
         };
 
-        this.update = this.update.bind(this);
+        this.loadData = this.loadData.bind(this);
     }
 
     // Retrieve all post information.
     componentDidMount() {
+        this.loadData();
+    }
+
+    /**
+     * Load data for the WHOLE PAGE and updates the state.
+     */
+    loadData() {
         fetch(backend + '/api/post/' + this.props.match.params.id)
             .then((response) => {
                 return response.json()
@@ -106,15 +113,6 @@ class PostDetail extends React.Component {
             })
     }
 
-    /**
-     * Updates the whole page.
-     *
-     * IN A LATER LECTURE WE WILL SEE HOW TO UPDATE ONLY PART OF THE PAGE.
-     */
-    update() {
-        console.log('TODO Refresh parent');
-    }
-
     render() {
         const {post} = this.state;
         if (!post.url) {
@@ -123,7 +121,7 @@ class PostDetail extends React.Component {
 
         // Render a single comment and all its sub-comments.
         const comments = post.comments.map(comment => {
-            return <Comment key={comment.id} {...comment} margin={0} increase={30} update={this.update}/>
+            return <Comment key={comment.id} {...comment} margin={0} increase={30} update={this.loadData}/>
         });
 
         // Combine
