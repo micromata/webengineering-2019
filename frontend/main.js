@@ -88,7 +88,9 @@ class PostDetail extends React.Component {
             post: {
                 comments: []
             }
-        }
+        };
+
+        this.update = this.update.bind(this);
     }
 
     // Retrieve all post information.
@@ -104,6 +106,15 @@ class PostDetail extends React.Component {
             })
     }
 
+    /**
+     * Updates the whole page.
+     *
+     * IN A LATER LECTURE WE WILL SEE HOW TO UPDATE ONLY PART OF THE PAGE.
+     */
+    update() {
+        console.log('TODO Refresh parent');
+    }
+
     render() {
         const {post} = this.state;
         if (!post.url) {
@@ -112,7 +123,7 @@ class PostDetail extends React.Component {
 
         // Render a single comment and all its sub-comments.
         const comments = post.comments.map(comment => {
-            return <Comment key={comment.id} {...comment} margin={0} increase={30}/>
+            return <Comment key={comment.id} {...comment} margin={0} increase={30} update={this.update}/>
         });
 
         // Combine
@@ -136,7 +147,7 @@ class PostDetail extends React.Component {
 
 function Comment(props) {
     const comments = props.comments.map(comment => {
-        return <Comment key={comment.id} {...comment} margin={props.margin + props.increase}/>
+        return <Comment key={comment.id} {...comment} margin={props.margin + props.increase} update={props.update}/>
     });
 
     const style = {marginLeft: props.margin};
@@ -145,7 +156,7 @@ function Comment(props) {
             <div style={style}>
                 <div className='commentDate'>{props.createdAt}</div>
                 {props.comment}
-                <CommentReply id={props.id}/>
+                <CommentReply id={props.id} update={props.update}/>
             </div>
             {comments}
         </div>
@@ -195,7 +206,7 @@ class CommentReply extends React.Component {
             })
         })
             .then(response => {
-                // TODO ML refresh the parent component
+                this.props.update();
             });
     }
 
