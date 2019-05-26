@@ -144,9 +144,9 @@ class PostDetail extends React.Component {
 }
 
 function Comment(props) {
-    console.log(JSON.stringify(props));
     const comments = props.comments.map(comment => {
-        return <Comment key={comment.id} {...comment} margin={props.margin + props.increase} update={props.update}/>
+        return <Comment key={comment.id} {...comment} margin={props.margin + props.increase}
+                        increase={props.increase} update={props.update}/>
     });
 
     const style = {marginLeft: props.margin};
