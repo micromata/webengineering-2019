@@ -205,6 +205,7 @@ class CommentReply extends React.Component {
         })
             .then(response => {
                 this.props.update();
+                this.state.visible = false;
             });
     }
 
