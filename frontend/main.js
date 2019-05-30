@@ -203,7 +203,7 @@ function Comment(props) {
             <div style={style}>
                 <div className='commentDate'>{props.createdAt}</div>
                 {props.comment}
-                <CommentReply id={props.id} update={props.update}/>
+                <CommentReply id={props.id} update={props.update} allowVisibilityToggle={true} target='comment'/>
             </div>
             {comments}
         </div>
@@ -219,7 +219,7 @@ class CommentReply extends React.Component {
         super(props);
         this.state = {
             comment: '',
-            visible: false
+            visible: props.allowVisibilityToggle ? false : true
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -240,7 +240,7 @@ class CommentReply extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         // TODO ML Prevent empty comments?
-        fetch(backend + '/api/comment/' + this.props.id + '/comment', {
+        fetch(backend + '/api/' + this.props.target + '/' + this.props.id + '/comment', {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
@@ -252,7 +252,9 @@ class CommentReply extends React.Component {
         })
             .then(response => {
                 this.props.update();
-                this.state.visible = false;
+                if (this.props.allowVisibilityToggle) {
+                    this.state.visible = false;
+                }
             });
     }
 
