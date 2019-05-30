@@ -135,58 +135,11 @@ class PostDetail extends React.Component {
                         </span>
                     </a>
                 </div>
-                <CommentReply id={post.id} update={this.loadData} allowVisibilityToggle={false} target='post'/>
+                <ReplyArea id={post.id} update={this.loadData} allowVisibilityToggle={false} target='post'/>
                 <div>
                     {comments}
                 </div>
             </div>
-        );
-    }
-}
-
-class PostReply extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            comment: ''
-        };
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleChange(evt) {
-        this.setState({[evt.target.name]: evt.target.value});
-    }
-
-    handleSubmit(event) {
-        event.preventDefault();
-        fetch(backend + '/api/post/' + this.props.id + '/comment', {
-            method: 'post',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                comment: this.state.comment,
-            })
-        })
-            .then(response => {
-                this.props.update();
-            });
-    }
-
-    render() {
-        return (
-            <form onSubmit={this.handleSubmit} className='comment-input'>
-                <div>
-                    <textarea name='comment' value={this.state.comment} onChange={this.handleChange}
-                              autoFocus={true}></textarea>
-                </div>
-                <div className='button'>
-                    <input type="submit" value="submit"/>
-                </div>
-            </form>
         );
     }
 }
@@ -203,7 +156,7 @@ function Comment(props) {
             <div style={style}>
                 <div className='commentDate'>{props.createdAt}</div>
                 {props.comment}
-                <CommentReply id={props.id} update={props.update} allowVisibilityToggle={true} target='comment'/>
+                <ReplyArea id={props.id} update={props.update} allowVisibilityToggle={true} target='comment'/>
             </div>
             {comments}
         </div>
@@ -214,7 +167,7 @@ function Comment(props) {
  * Note that this is the reply for comments. We will have a direct reply for
  * posts afterwards!
  */
-class CommentReply extends React.Component {
+class ReplyArea extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
