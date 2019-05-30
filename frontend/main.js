@@ -135,7 +135,7 @@ class PostDetail extends React.Component {
                         </span>
                     </a>
                 </div>
-                <PostReply/>
+                <PostReply id={post.id} update={this.loadData}/>
                 <div>
                     {comments}
                 </div>
@@ -144,8 +144,66 @@ class PostDetail extends React.Component {
     }
 }
 
-function PostReply(props) {
-    return <div>Reply field</div>;
+class PostReply extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            comment: '',
+            visible: false
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.toggleVisibility = this.toggleVisibility.bind(this);
+    }
+
+    toggleVisibility(evt) {
+        this.setState({['visible']: true});
+    }
+
+    // See https://medium.com/@tmkelly28/handling-multiple-form-inputs-in-react-c5eb83755d15 for working with forms
+    // with multiple elements.
+    handleChange(evt) {
+        this.setState({[evt.target.name]: evt.target.value});
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        fetch(backend + '/api/post/' + this.props.id + '/comment', {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                comment: this.state.comment,
+            })
+        })
+            .then(response => {
+                this.props.update();
+                this.state.visible = false;
+            });
+    }
+
+    render() {
+        if (!this.state.visible) {
+            return (
+                <div className='reply' onClick={this.toggleVisibility}>reply</div>
+            );
+        }
+
+        return (
+            <form onSubmit={this.handleSubmit} className='comment-input'>
+                <div>
+                    <textarea name='comment' value={this.state.title} onChange={this.handleChange}
+                              autoFocus={true}></textarea>
+                </div>
+                <div className='button'>
+                    <input type="submit" value="submit"/>
+                </div>
+            </form>
+        );
+    }
 }
 
 function Comment(props) {
