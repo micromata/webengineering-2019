@@ -117,7 +117,8 @@ input[type=text] {
 }
 
 textarea {
-    min-width: 100%;
+    min-width: 96%;
+    max-width: 96%;
     height: 100px;
 }
 
