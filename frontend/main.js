@@ -148,21 +148,13 @@ class PostReply extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            comment: '',
-            visible: false
+            comment: ''
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.toggleVisibility = this.toggleVisibility.bind(this);
     }
 
-    toggleVisibility(evt) {
-        this.setState({['visible']: true});
-    }
-
-    // See https://medium.com/@tmkelly28/handling-multiple-form-inputs-in-react-c5eb83755d15 for working with forms
-    // with multiple elements.
     handleChange(evt) {
         this.setState({[evt.target.name]: evt.target.value});
     }
@@ -181,21 +173,14 @@ class PostReply extends React.Component {
         })
             .then(response => {
                 this.props.update();
-                this.state.visible = false;
             });
     }
 
     render() {
-        if (!this.state.visible) {
-            return (
-                <div className='reply' onClick={this.toggleVisibility}>reply</div>
-            );
-        }
-
         return (
             <form onSubmit={this.handleSubmit} className='comment-input'>
                 <div>
-                    <textarea name='comment' value={this.state.title} onChange={this.handleChange}
+                    <textarea name='comment' value={this.state.comment} onChange={this.handleChange}
                               autoFocus={true}></textarea>
                 </div>
                 <div className='button'>
