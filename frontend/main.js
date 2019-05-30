@@ -135,7 +135,7 @@ class PostDetail extends React.Component {
                         </span>
                     </a>
                 </div>
-                <PostReply id={post.id} update={this.loadData}/>
+                <CommentReply id={post.id} update={this.loadData} allowVisibilityToggle={false} target='post'/>
                 <div>
                     {comments}
                 </div>
