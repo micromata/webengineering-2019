@@ -253,8 +253,9 @@ class CommentReply extends React.Component {
             .then(response => {
                 this.props.update();
                 if (this.props.allowVisibilityToggle) {
-                    this.state.visible = false;
+                    this.setState({['visible']: false});
                 }
+                this.setState({['comment']: ''});
             });
     }
 
@@ -268,7 +269,7 @@ class CommentReply extends React.Component {
         return (
             <form onSubmit={this.handleSubmit} className='comment-input'>
                 <div>
-                    <textarea name='comment' value={this.state.title} onChange={this.handleChange}
+                    <textarea name='comment' value={this.state.comment} onChange={this.handleChange}
                               autoFocus={true}></textarea>
                 </div>
                 <div className='button'>
