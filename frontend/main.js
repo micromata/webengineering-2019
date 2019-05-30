@@ -135,12 +135,17 @@ class PostDetail extends React.Component {
                         </span>
                     </a>
                 </div>
+                <PostReply/>
                 <div>
                     {comments}
                 </div>
             </div>
         );
     }
+}
+
+function PostReply(props) {
+    return <div>Reply field</div>;
 }
 
 function Comment(props) {
@@ -161,8 +166,6 @@ function Comment(props) {
         </div>
     )
 }
-
-// TODO ML fix bug with indentation of comments?
 
 /**
  * Note that this is the reply for comments. We will have a direct reply for
