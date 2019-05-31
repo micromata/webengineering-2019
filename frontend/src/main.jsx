@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom'
 import React from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
-import {PostDetail} from "./components";
+import {PostDetail} from "./PostDetail";
 import {PostList} from "./PostList";
 import {Header} from "./Header";
 import {PostNew} from "./PostNew";
