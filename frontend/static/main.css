@@ -1,3 +1,5 @@
+/* TODO ML Consolidate this ...*/
+
 body {
     /*See https://jrl.ninja/etc/1/*/
     max-width: 64rem;
@@ -98,9 +100,16 @@ a {
 }
 
 label > span {
+    margin-top: 2px;
     width: 30px;
     display: inline-block;
     color: gray;
+    vertical-align: top;
+}
+
+label > textarea {
+    margin-left: 5px;
+    max-width: 95%;
 }
 
 .new-post > .button {
@@ -115,11 +124,11 @@ input[type=text] {
     box-sizing: border-box;
 }
 
-textarea {
-    min-width: 96%;
-    max-width: 96%;
-    height: 100px;
-}
+/*textarea {*/
+/*    min-width: 96%;*/
+/*    max-width: 96%;*/
+/*    height: 100px;*/
+/*}*/
 
 .reply {
     color: darkgray;
@@ -127,4 +136,16 @@ textarea {
 
 .comment-input {
     margin-top: 20px;
+}
+
+.description {
+    color: gray;
+    margin-top: 10px;
+    margin-left: 35px;
+}
+
+.or {
+    color: gray;
+    font-weight: bold;
+    margin-left: 35px;
 }
