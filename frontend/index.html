@@ -12,19 +12,6 @@
     </div>
 </div>
 
-<!--Note that we use the babel transpiler from JSX to JS inside our browser solely for prototyping. We will later use a -->
-<!--normal build pipeline!-->
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-<!--See https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes for crossorigin attribute-->
-<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-
-<!--Use react-router for mapping URLs with components-->
-<script crossorigin src="https://unpkg.com/react-router@5.0.0/umd/react-router.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-router-dom@5.0.0/umd/react-router-dom.min.js"></script>
-
-<!--Note that this approach (babel in the browser) will only work using a single source file! -->
-<script src="/main.js" type="text/babel"></script>
+<script src="/main.js"></script>
 </body>
 </html>
