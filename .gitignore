@@ -14,3 +14,7 @@ node_modules/
 
 # Ignore database files
 database/
+
+# Ignore build files
+frontend/.cache
+frontend/dist
