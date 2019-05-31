@@ -14,6 +14,7 @@ public class Post extends RestObject implements Commentable {
 
     public String title;
     public String url;
+    public String description;
 
     /**
      * Note: While I favor consistency this is (or might?) be the case where making an exception from the rule is ok for
@@ -28,11 +29,12 @@ public class Post extends RestObject implements Commentable {
     public String toString() {
         return "Post{" +
                 "id=" + id +
-                ", createdAt=" + createdAt +
                 ", title='" + title + '\'' +
                 ", url='" + url + '\'' +
+                ", description='" + description + '\'' +
                 ", comments=" + comments +
                 ", numberOfComments=" + numberOfComments +
+                ", createdAt=" + createdAt +
                 '}';
     }
 
