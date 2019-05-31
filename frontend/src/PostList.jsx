@@ -1,7 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-
-const backend = process.env.BACKEND || "http://localhost:8080";
+import backend from './configuration';
 
 export class PostList extends React.Component {
     constructor(props) {

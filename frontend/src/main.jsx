@@ -7,9 +7,6 @@ import {PostList} from "./PostList";
 import {Header} from "./Header";
 import {PostNew} from "./PostNew";
 
-// The environment variable BACKEND will be used, if defined.
-const backend = process.env.BACKEND || "http://localhost:8080";
-
 /**
  * Here we are going to define our routing from paths to shown components.
  */

@@ -1,6 +1,5 @@
 import React from "react";
-
-const backend = process.env.BACKEND || "http://localhost:8080";
+import backend from './configuration';
 
 /**
  * Show details for a single post.
