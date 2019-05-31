@@ -6,7 +6,8 @@ export class PostNew extends React.Component {
         super(props);
         this.state = {
             title: '',
-            url: ''
+            url: '',
+            description: ''
         };
 
         // See https://medium.freecodecamp.org/this-is-why-we-need-to-bind-event-handlers-in-class-components-in-react-f7ea1a6f93eb
@@ -54,6 +55,14 @@ export class PostNew extends React.Component {
                     <label>
                         <span>url</span>
                         <input type="text" name="url" value={this.state.url} onChange={this.handleChange}/>
+                    </label>
+                </div>
+                or
+                <div>
+                    <label>
+                        <span>text</span>
+                        <textarea name='description' value={this.state.description}
+                                  onChange={this.handleChange}></textarea>
                     </label>
                 </div>
                 <div className='button'>
