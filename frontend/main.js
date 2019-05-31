@@ -1,9 +1,6 @@
-// See https://stackoverflow.com/questions/40764596/using-react-router-with-cdn-and-without-webpack-or-browserify
-// Note that using a PROPER BUILD SYSTEM (and ES6 modules) is planned for one of the following lectures.
-const Router = window.ReactRouterDOM.BrowserRouter;
-const Route = window.ReactRouterDOM.Route;
-const Link = window.ReactRouterDOM.Link;
-const Switch = window.ReactRouterDOM.Switch;
+import ReactDOM from 'react-dom'
+import React from "react";
+import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
 
 // We will later use an environment variable in the build process, but for now we change this line while building
 // the docker container.
