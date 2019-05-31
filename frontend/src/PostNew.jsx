@@ -32,7 +32,8 @@ export class PostNew extends React.Component {
             },
             body: JSON.stringify({
                 title: this.state.title,
-                url: this.state.url
+                url: this.state.url,
+                description: this.state.description
             })
         })
             .then(response => {
