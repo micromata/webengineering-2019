@@ -2,7 +2,7 @@
 FROM node:8
 WORKDIR /app
 
-# TODO ML Use dedicated directory for resources
-COPY . .
+COPY dist .
+COPY server.js .
 
 CMD ["node", "server.js"]
