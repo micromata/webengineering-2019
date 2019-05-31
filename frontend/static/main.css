@@ -7,6 +7,7 @@ body {
 
 .background {
     background-color: rgb(246, 246, 239);
+    border-bottom: 2px solid rgb(255, 102, 0);
 }
 
 .header {
@@ -34,8 +35,6 @@ body {
 }
 
 .postList {
-    /*padding: 10px;*/
-    border-bottom: 2px solid rgb(255, 102, 0);
 }
 
 .postList .number {
