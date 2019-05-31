@@ -68,6 +68,10 @@ export class PostNew extends React.Component {
                 <div className='button'>
                     <input type="submit" value="submit"/>
                 </div>
+                <div>
+                    Leave url blank to submit a question for discussion. If there is no url, the text (if any) will
+                    appear at the top of the thread.
+                </div>
             </form>
         );
     }
