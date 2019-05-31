@@ -3,6 +3,10 @@
     "description": "Frontend for news application",
     "version": "0.0.1",
     "dependencies": {
-        "express": "^4.16.4"
+      "express": "^4.16.4",
+      "react": "^16.8.6",
+      "react-dom": "^16.8.6",
+      "react-router": "^5.0.0",
+      "react-router-dom": "^5.0.0"
     }
 }
