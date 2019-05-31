@@ -2,7 +2,11 @@
 FROM node:8
 WORKDIR /app
 
-COPY dist .
+# Install express
+COPY package.json .
+RUN npm install
+
 COPY server.js .
+COPY dist dist
 
 CMD ["node", "server.js"]

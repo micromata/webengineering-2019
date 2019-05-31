@@ -14,6 +14,12 @@ for name in "${apps[@]}"
 do
     echo "*** Deploying $name ***"
     cd $name
+
+    if [[ -e build.sh ]]
+    then
+        ./build.sh
+    fi
+
     heroku container:push web -a web-news-$name
     heroku container:release web -a web-news-$name
     cd ..
