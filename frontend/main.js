@@ -2,9 +2,8 @@ import ReactDOM from 'react-dom'
 import React from "react";
 import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
 
-// We will later use an environment variable in the build process, but for now we change this line while building
-// the docker container.
-const backend = "http://localhost:8080"; // BACKEND
+// The environment variable BACKEND will be used, if defined.
+const backend = process.env.BACKEND || "http://localhost:8080";
 
 /**
  * This is a class component with more options for lifecycle management etc.
