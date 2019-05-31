@@ -1,15 +1,13 @@
-import ReactDOM from 'react-dom'
 import React from "react";
-import {BrowserRouter as Router, Link, Route, Switch} from "react-router-dom";
+import {Link} from "react-router-dom";
 
-// The environment variable BACKEND will be used, if defined.
 const backend = process.env.BACKEND || "http://localhost:8080";
 
 /**
  * This is a class component with more options for lifecycle management etc.
  * See https://reactjs.org/docs/state-and-lifecycle.html how to move from a functional component to a class component.
  */
-class PostList extends React.Component {
+export class PostList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -77,7 +75,7 @@ class PostItem extends React.Component {
 /**
  * Show details for a single post.
  */
-class PostDetail extends React.Component {
+export class PostDetail extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -229,7 +227,7 @@ class ReplyArea extends React.Component {
     }
 }
 
-function Header(props) {
+export function Header(props) {
     return (
         <div className="header">
             <Link to='/'>
@@ -240,7 +238,7 @@ function Header(props) {
     );
 }
 
-class PostNew extends React.Component {
+export class PostNew extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -302,26 +300,3 @@ class PostNew extends React.Component {
         );
     }
 }
-
-/**
- * Here we are going to define our routing from paths to shown components.
- */
-const routing = (
-    <Router>
-        <div>
-            <Header/>
-            {/*See https://reacttraining.com/react-router/web/api/Switch*/}
-            <Switch>
-                <Route exact path="/" component={PostList}/>
-                <Route exact path="/post/new" component={PostNew}/>
-                <Route path="/post/:id" component={PostDetail}/>
-            </Switch>
-        </div>
-    </Router>
-);
-
-// See e.g. https://reactjs.org/docs/hello-world.html
-ReactDOM.render(
-    routing,
-    document.getElementById('root')
-);
