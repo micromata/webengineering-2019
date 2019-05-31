@@ -2,8 +2,9 @@ import ReactDOM from 'react-dom'
 import React from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
-import {Header, PostDetail, PostNew} from "./components";
+import {PostDetail, PostNew} from "./components";
 import {PostList} from "./PostList";
+import {Header} from "./Header";
 
 // The environment variable BACKEND will be used, if defined.
 const backend = process.env.BACKEND || "http://localhost:8080";
