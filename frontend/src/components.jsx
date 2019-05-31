@@ -53,23 +53,16 @@ export class PostList extends React.Component {
 /**
  * Component for displaying a single post list value.
  */
-class PostItem extends React.Component {
-    // TODO ML Can this be a functional component again?
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        const {post} = this.props;
-        return (
-            <li>
-                <span className='number'>{this.props.index + 1}.</span>
-                <a href={post.url}>{post.title}</a>
-                <Link to={'/post/' + post.id}
-                      className='comment'>{post.numberOfComments} comments</Link>
-            </li>
-        )
-    }
+function PostItem(props) {
+    const {post} = props;
+    return (
+        <li>
+            <span className='number'>{props.index + 1}.</span>
+            <a href={post.url}>{post.title}</a>
+            <Link to={'/post/' + post.id}
+                  className='comment'>{post.numberOfComments} comments</Link>
+        </li>
+    );
 }
 
 /**
