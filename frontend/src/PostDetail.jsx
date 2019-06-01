@@ -1,6 +1,7 @@
 import React from "react";
 import backend from './configuration';
 import {Date} from 'sugar-date';
+import isAuthenticated from './authentication';
 
 /**
  * Show details for a single post.
@@ -67,7 +68,10 @@ export class PostDetail extends React.Component {
                         </div>
                     }
                 </div>
-                <ReplyArea id={post.id} update={this.loadData} allowVisibilityToggle={false} target='post'/>
+                {
+                    isAuthenticated() &&
+                    <ReplyArea id={post.id} update={this.loadData} allowVisibilityToggle={false} target='post'/>
+                }
                 <div>
                     {comments}
                 </div>
@@ -89,7 +93,10 @@ function Comment(props) {
             <div style={style}>
                 <div className='commentDate'>{date}</div>
                 {props.comment}
-                <ReplyArea id={props.id} update={props.update} allowVisibilityToggle={true} target='comment'/>
+                {
+                    isAuthenticated() &&
+                    <ReplyArea id={props.id} update={props.update} allowVisibilityToggle={true} target='comment'/>
+                }
             </div>
             {comments}
         </div>
