@@ -23,15 +23,19 @@ public class AuthenticationFilter implements Filter {
 
         // In our case we do not permit any HTTP requests which are POST.
         if (httpReq.getMethod().equals("POST")) {
-            String authorization = httpReq.getHeader("Authorization");
-            if (StringUtils.isEmpty(authorization)) {
+            if (isAuthorized(httpReq)) {
                 LOG.warn("Unauthorized request to {}", ((HttpServletRequest) req).getRequestURI());
-                ((HttpServletResponse) resp).setStatus(HttpStatus.UNAUTHORIZED.value());
+                httpResp.setStatus(HttpStatus.UNAUTHORIZED.value());
                 return;
             }
         }
 
         // We allow everything else.
         chain.doFilter(req, resp);
+    }
+
+    private boolean isAuthorized(HttpServletRequest request) {
+        String authorization = request.getHeader("Authorization");
+        return !StringUtils.isEmpty(authorization);
     }
 }
