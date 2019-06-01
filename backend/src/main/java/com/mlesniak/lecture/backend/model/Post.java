@@ -26,6 +26,7 @@ public class Post extends RestObject implements Commentable {
      * when (not if!) the application grows.
      */
     @OneToMany
+    @OrderBy("createdAt DESC")
     private List<Comment> comments;
     public Integer numberOfComments;
 
