@@ -38,7 +38,7 @@ export class PostDetail extends React.Component {
 
     render() {
         const {post} = this.state;
-        if (!post.url) {
+        if (post === undefined) {
             return <div></div>;
         }
 
@@ -54,7 +54,7 @@ export class PostDetail extends React.Component {
                     <a href={post.url}>
                         <span className='title-header'>{post.title}</span>
                         <span className='host'>
-                            ({new URL(post.url).hostname})
+                            {post.url ? new URL(post.url).hostname : ''}
                         </span>
                     </a>
                 </div>
