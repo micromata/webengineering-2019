@@ -129,7 +129,7 @@ input[type=text] {
 textarea {
     min-width: 95%;
     max-width: 95%;
-/*    height: 100px;*/
+    height: 100px;
 }
 
 .reply {
