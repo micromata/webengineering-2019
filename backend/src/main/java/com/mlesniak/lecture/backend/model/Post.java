@@ -12,8 +12,11 @@ public class Post extends RestObject implements Commentable {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY) // See JavaDoc for explanation.
     public Long id;
 
+    @Column(length = 1024)
     public String title;
     public String url;
+
+    @Column(length = 4096)
     public String description;
 
     /**

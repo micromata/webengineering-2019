@@ -12,6 +12,7 @@ public class Comment extends RestObject implements Commentable {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY) // See JavaDoc for explanation.
     public Long id;
 
+    @Column(length = 4096)
     public String comment;
 
     /**
