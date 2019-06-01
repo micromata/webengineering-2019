@@ -50,12 +50,18 @@ export class PostList extends React.Component {
  */
 function PostItem(props) {
     const {post} = props;
+    let url = undefined;
+    if (post.url) {
+        url = <a href={post.url}>{post.title}</a>
+    } else {
+        url = <Link to={'/post/' + post.id}>{post.title}</Link>
+    }
+
     return (
         <li>
             <span className='number'>{props.index + 1}.</span>
-            <a href={post.url}>{post.title}</a>
-            <Link to={'/post/' + post.id}
-                  className='comment'>{post.numberOfComments} comments</Link>
+            {url}
+            <Link to={'/post/' + post.id} className='comment'>{post.numberOfComments} comments</Link>
         </li>
     );
 }
