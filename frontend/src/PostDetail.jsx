@@ -1,7 +1,7 @@
 import React from "react";
 import backend from './configuration';
 import {Date} from 'sugar-date';
-import isAuthenticated from './authentication';
+import {isAuthenticated} from './authentication';
 
 /**
  * Show details for a single post.
