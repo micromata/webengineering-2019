@@ -151,3 +151,8 @@ textarea {
     font-weight: bold;
     margin-left: 35px;
 }
+
+.post-description {
+    margin-top: 10px;
+    color: darkgrey;
+}

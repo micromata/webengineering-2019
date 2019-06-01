@@ -57,6 +57,9 @@ export class PostDetail extends React.Component {
                             {post.url ? new URL(post.url).hostname : ''}
                         </span>
                     </a>
+                    <div className='post-description'>
+                        {post.description}
+                    </div>
                 </div>
                 <ReplyArea id={post.id} update={this.loadData} allowVisibilityToggle={false} target='post'/>
                 <div>
