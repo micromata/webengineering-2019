@@ -156,3 +156,7 @@ textarea {
     margin-top: 10px;
     color: darkgrey;
 }
+
+.user-info {
+    float: right;
+}

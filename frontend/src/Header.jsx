@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {addAuthenticationListener, isAuthenticated, logout} from "./authentication";
+import {addAuthenticationListener, getToken, isAuthenticated, logout} from "./authentication";
 
 export class Header extends React.Component {
     constructor(props) {
@@ -25,12 +25,16 @@ export class Header extends React.Component {
                 }
                 {
                     isAuthenticated() &&
-                    <a className='header-link' onClick={logout}>logout</a>
+                    <a className='header-link user-info' onClick={logout}>logout</a>
                 }
                 {
                     !isAuthenticated() &&
                     <a href="https://github.com/login/oauth/authorize?response_type=code&client_id=ca9d6341a3ab314ccba4"
                        className='header-link'>login</a>
+                }
+                {
+                    isAuthenticated() &&
+                    <span className='user-info'>{getToken()}</span>
                 }
             </div>
         )
