@@ -14,6 +14,7 @@ public class Post extends RestObject implements Commentable {
 
     @Column(length = 1024)
     public String title;
+    @Column(length = 1024)
     public String url;
 
     @Column(length = 4096)
