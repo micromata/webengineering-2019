@@ -117,18 +117,4 @@ public class PostController {
                 .status(HttpStatus.OK)
                 .body(Collections.singletonMap("post", comment));
     }
-
-    // TODO ML Remove this function.
-    // TODO ML Move to debugging controller for easier overview.
-
-    /**
-     * Debug endpoint for scripts. Will later be removed.
-     */
-    @GetMapping("/api/debug/all")
-    public Iterable<Object> getIdRanges() {
-        LinkedList<Object> objects = new LinkedList<>();
-        postRepository.findAll().forEach(c -> objects.add(c));
-        commentRepository.findAll().forEach(c -> objects.add(c));
-        return objects;
-    }
 }
