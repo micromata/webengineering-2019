@@ -1,5 +1,6 @@
 import React from "react";
 import backend from './configuration';
+import {getToken} from "./authentication";
 
 export class PostNew extends React.Component {
     constructor(props) {
@@ -28,7 +29,8 @@ export class PostNew extends React.Component {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': getToken()
             },
             body: JSON.stringify({
                 title: this.state.title,
