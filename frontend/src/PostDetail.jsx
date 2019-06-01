@@ -1,5 +1,6 @@
 import React from "react";
 import backend from './configuration';
+import {Date} from 'sugar-date';
 
 /**
  * Show details for a single post.
@@ -81,11 +82,12 @@ function Comment(props) {
                         increase={props.increase} update={props.update}/>
     });
 
+    const date = new Date(props.createdAt).relative().raw;
     const style = {marginLeft: props.margin};
     return (
         <div className='postcomment'>
             <div style={style}>
-                <div className='commentDate'>{props.createdAt}</div>
+                <div className='commentDate'>{date}</div>
                 {props.comment}
                 <ReplyArea id={props.id} update={props.update} allowVisibilityToggle={true} target='comment'/>
             </div>
