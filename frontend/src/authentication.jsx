@@ -1,5 +1,9 @@
 import React from "react";
 
 export default function isAuthenticated() {
-    return false;
+    return window.token != undefined;
+}
+
+export function authenticate(token) {
+    window.token = token;
 }
