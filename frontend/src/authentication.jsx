@@ -6,6 +6,7 @@ export function isAuthenticated() {
 
 export function authenticate(token) {
     window.token = token;
+    // TODO ML Rename this function
     listener.forEach(l => l.authenticated());
 }
 
