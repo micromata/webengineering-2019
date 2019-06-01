@@ -1,7 +1,7 @@
 import React from "react";
 import backend from './configuration';
 import {Date} from 'sugar-date';
-import {isAuthenticated} from './authentication';
+import {getToken, isAuthenticated} from './authentication';
 
 /**
  * Show details for a single post.
@@ -137,7 +137,8 @@ class ReplyArea extends React.Component {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': getToken()
             },
             body: JSON.stringify({
                 comment: this.state.comment,

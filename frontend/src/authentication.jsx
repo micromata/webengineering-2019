@@ -4,6 +4,10 @@ export function isAuthenticated() {
     return window.token != undefined;
 }
 
+export function getToken() {
+    return window.token;
+}
+
 export function authenticate(token) {
     window.token = token;
     // TODO ML Rename this function
