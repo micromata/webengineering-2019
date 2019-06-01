@@ -6,6 +6,7 @@ import {PostDetail} from "./PostDetail";
 import {PostList} from "./PostList";
 import {Header} from "./Header";
 import {PostNew} from "./PostNew";
+import {AuthenticationCallback} from "./AuthenticationCallback";
 
 /**
  * Here we are going to define our routing from paths to shown components.
@@ -19,6 +20,7 @@ const routing = (
                 <Route exact path="/" component={PostList}/>
                 <Route exact path="/post/new" component={PostNew}/>
                 <Route path="/post/:id" component={PostDetail}/>
+                <Route path="/callback" component={AuthenticationCallback}/>
             </Switch>
         </div>
     </Router>

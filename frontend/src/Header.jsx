@@ -15,7 +15,7 @@ export function Header(props) {
             {
                 !isAuthenticated() &&
                 <a href="https://github.com/login/oauth/authorize?response_type=code&client_id=ca9d6341a3ab314ccba4"
-                   class='header-link'>login</a>
+                   className='header-link'>login</a>
             }
         </div>
     );
