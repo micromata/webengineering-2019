@@ -14,3 +14,8 @@ let listener = [];
 export function addAuthenticationListener(l) {
     listener.push(l);
 }
+
+export function logout() {
+    window.token = null;
+    listener.forEach(l => l.authenticated());
+}
