@@ -49,13 +49,15 @@ export class PostNew extends React.Component {
                     <label>
                         <span>title</span>
                         <input type="text" name="title" autoFocus={true} value={this.state.title}
-                               onChange={this.handleChange}/>
+                               onChange={this.handleChange}
+                               maxLength={1024}/>
                     </label>
                 </div>
                 <div>
                     <label>
                         <span>url</span>
-                        <input type="text" name="url" value={this.state.url} onChange={this.handleChange}/>
+                        <input type="text" name="url" value={this.state.url} maxLength={1024}
+                               onChange={this.handleChange}/>
                     </label>
                 </div>
                 <span className='or'>or</span>
@@ -63,7 +65,10 @@ export class PostNew extends React.Component {
                     <label>
                         <span>text</span>
                         <textarea name='description' value={this.state.description}
-                                  onChange={this.handleChange}></textarea>
+                                  onChange={this.handleChange}
+                            // We will later use a value from the backend instead of a hardcoded one.
+                                  maxLength={4096}
+                        ></textarea>
                     </label>
                 </div>
                 <div className='button'>
