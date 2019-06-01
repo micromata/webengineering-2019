@@ -8,6 +8,7 @@ body {
 }
 
 .background {
+    padding-bottom: 10px;
     background-color: rgb(246, 246, 239);
     border-bottom: 2px solid rgb(255, 102, 0);
 }
@@ -110,6 +111,7 @@ label > span {
 label > textarea {
     margin-left: 5px;
     max-width: 95%;
+    min-width: 95%;
 }
 
 .new-post > .button {
@@ -124,11 +126,11 @@ input[type=text] {
     box-sizing: border-box;
 }
 
-/*textarea {*/
-/*    min-width: 96%;*/
-/*    max-width: 96%;*/
+textarea {
+    min-width: 95%;
+    max-width: 95%;
 /*    height: 100px;*/
-/*}*/
+}
 
 .reply {
     color: darkgray;
