@@ -1,4 +1,4 @@
-/* TODO ML Consolidate this ...*/
+/* TODO ML Consolidate this and clean this up*/
 
 body {
     /*See https://jrl.ninja/etc/1/*/
@@ -68,7 +68,6 @@ body {
     padding-left: 10px;
 }
 
-/*TODO ML name clash comment and postcomment */
 .postcomment {
     padding-top: 10px;
     padding-bottom: 10px;
