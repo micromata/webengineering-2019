@@ -10,9 +10,7 @@ export class PostDetail extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            post: {
-                comments: []
-            }
+            post: undefined
         };
 
         this.loadData = this.loadData.bind(this);
@@ -49,6 +47,9 @@ export class PostDetail extends React.Component {
             return <Comment key={comment.id} {...comment} margin={0} increase={30} update={this.loadData}/>
         });
 
+        // TODO ML Create a simple component for date and createdBy
+        const date = new Date(post.createdAt).relative().raw;
+
         // Combine
         return (
             <div className='post'>
@@ -59,6 +60,7 @@ export class PostDetail extends React.Component {
                             {post.url ? new URL(post.url).hostname : ''}
                         </span>
                     </a>
+                    <div className='commentDate'>{date} by {post.createdBy.userName}</div>
                     {
                         // Show conditional rendering. See https://reactjs.org/docs/conditional-rendering.html for
                         // multiple other options.
