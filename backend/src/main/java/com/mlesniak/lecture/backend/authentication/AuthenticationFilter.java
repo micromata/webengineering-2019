@@ -1,5 +1,6 @@
 package com.mlesniak.lecture.backend.authentication;
 
+import com.mlesniak.lecture.backend.model.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.JwtException;
@@ -11,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import javax.crypto.SecretKey;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -23,15 +25,22 @@ import java.util.Optional;
 public class AuthenticationFilter implements Filter {
     private static final Logger LOG = LoggerFactory.getLogger(AuthenticationFilter.class);
 
+    @Resource
+    private User user;
+
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
             throws IOException, ServletException {
         HttpServletRequest httpReq = (HttpServletRequest) req;
         HttpServletResponse httpResp = (HttpServletResponse) resp;
 
+        // If a JWT token is present, use its values to create a user object. Nevertheless, we do not enforce it
+        // for all requests (see below).
+        boolean valid = parseToken(httpReq);
+
         // In our case we do not permit any HTTP requests which are POST.
         if (httpReq.getMethod().equals("POST")) {
-            if (!isAuthorized(httpReq)) {
+            if (!valid) {
                 LOG.warn("Unauthorized request to {}", ((HttpServletRequest) req).getRequestURI());
                 httpResp.setStatus(HttpStatus.UNAUTHORIZED.value());
                 return;
@@ -42,11 +51,18 @@ public class AuthenticationFilter implements Filter {
         chain.doFilter(req, resp);
     }
 
-    private boolean isAuthorized(HttpServletRequest request) {
-        // TODO ML Add user to context.
+    private boolean parseToken(HttpServletRequest request) {
         Optional<Claims> claims = decodeRequest(request);
-        LOG.info("Claims: {}", claims);
-        return claims.isPresent();
+        if (claims.isPresent()) {
+            Claims c = claims.get();
+            user.setId(Long.parseLong(c.get("id", String.class)));
+            user.setUserName(c.getSubject());
+            user.setFullName(c.get("name", String.class));
+            LOG.info("claimUser={}", user);
+            return true;
+        }
+
+        return false;
     }
 
     public Optional<Claims> decodeRequest(HttpServletRequest request) {

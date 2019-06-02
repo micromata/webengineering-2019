@@ -2,6 +2,7 @@ package com.mlesniak.lecture.backend.controller;
 
 import com.mlesniak.lecture.backend.model.Comment;
 import com.mlesniak.lecture.backend.model.Post;
+import com.mlesniak.lecture.backend.model.User;
 import com.mlesniak.lecture.backend.repository.CommentRepository;
 import com.mlesniak.lecture.backend.repository.PostRepository;
 import org.slf4j.Logger;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -23,6 +25,9 @@ import java.util.stream.Collectors;
 @RestController
 public class PostController {
     private static final Logger LOG = LoggerFactory.getLogger(PostController.class);
+
+    @Resource
+    private User user;
 
     // TODO ML We should use a service here.
     private PostRepository postRepository;
