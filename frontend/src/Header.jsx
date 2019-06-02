@@ -1,12 +1,21 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {addAuthenticationListener, getUser, isAuthenticated, logout} from "./authentication";
+import {addAuthenticationListener, getAuthenticationURL, getUser, isAuthenticated, logout} from "./authentication";
 
 export class Header extends React.Component {
     constructor(props) {
         super(props);
         this.authenticated = this.authenticated.bind(this);
         addAuthenticationListener(this);
+
+        this.state = {url: ''}
+    }
+
+    componentDidMount() {
+        // Retrieve URL for GithHub authentication from the backend.
+        getAuthenticationURL(url => {
+            this.setState({url});
+        });
     }
 
     authenticated() {
@@ -29,7 +38,7 @@ export class Header extends React.Component {
                 }
                 {
                     !isAuthenticated() &&
-                    <a href="https://github.com/login/oauth/authorize?response_type=code&client_id=ca9d6341a3ab314ccba4"
+                    <a href={this.state.url}
                        className='header-link'>login</a>
                 }
                 {

@@ -3,6 +3,7 @@
 // TODO ML Refactor this file!
 import React from "react";
 import jwt_decode from 'jwt-decode';
+import backend from './configuration';
 
 
 export function loadStoredToken() {
@@ -75,4 +76,14 @@ function getCookie(cname) {
 
 function eraseCookie(name) {
     document.cookie = name + '=; Max-Age=-99999999;';
+}
+
+export function getAuthenticationURL(callback) {
+    fetch(backend + '/api/authentication/url')
+        .then((response) => {
+            return response.json()
+        })
+        .then((data) => {
+            callback(data.url);
+        })
 }
