@@ -35,6 +35,9 @@ export function logout() {
     window.token = null;
     eraseCookie("token");
     listener.forEach(l => l.authenticated());
+
+    // We are logged out, go back to the main page.
+    document.location.href = "/";
 }
 
 function setCookie(cname, cvalue, exdays) {
