@@ -1,5 +1,6 @@
 package com.mlesniak.lecture.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.Entity;
@@ -41,6 +42,23 @@ public class User {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
+    }
+
+    /**
+     * Create a plain user object from an arbitary one for persistence. See e.g.
+     * https://stackoverflow.com/questions/26324144/spring-passing-cglib-proxy-object-to-the-repository-layer-and-hibernate
+     * for other (albeit much more complicated) approaches.
+     * <p>
+     * The @JsonIgnore annotation is important. What happens if you omit this? Hint: it has to do with
+     * Jackson's serialization approach.
+     */
+    @JsonIgnore
+    public User getPlainUser() {
+        User user = new User();
+        user.id = id;
+        user.fullName = fullName;
+        user.userName = userName;
+        return user;
     }
 
     @Override

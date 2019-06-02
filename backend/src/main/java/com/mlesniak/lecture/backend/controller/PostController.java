@@ -5,6 +5,7 @@ import com.mlesniak.lecture.backend.model.Post;
 import com.mlesniak.lecture.backend.model.User;
 import com.mlesniak.lecture.backend.repository.CommentRepository;
 import com.mlesniak.lecture.backend.repository.PostRepository;
+import com.mlesniak.lecture.backend.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,7 @@ public class PostController {
 
     // TODO ML We should use a service here.
     private PostRepository postRepository;
+    private UserRepository userRepository;
     private CommentRepository commentRepository;
 
     // See e.g. https://www.vojtechruzicka.com/field-dependency-injection-considered-harmful/
@@ -39,14 +41,17 @@ public class PostController {
     // as immutable objects and to ensure that required dependencies are not null. Furthermore, constructor-injected
     // components are always returned to client (calling) code in a fully initialized state.
     @Autowired
-    public PostController(PostRepository postRepository, CommentRepository commentRepository) {
+    public PostController(PostRepository postRepository, CommentRepository commentRepository, UserRepository userRepository) {
         this.postRepository = postRepository;
         this.commentRepository = commentRepository;
+        this.userRepository = userRepository;
     }
 
     @PostMapping("/api/post")
     public ResponseEntity<Map<String, String>> addPost(@RequestBody Post post) {
         LOG.info("Storing post: {}", post);
+        post.createdBy = user.getPlainUser();
+        userRepository.save(post.createdBy);
         postRepository.save(post);
         return ResponseEntity.status(HttpStatus.OK).body(Collections.emptyMap());
     }
