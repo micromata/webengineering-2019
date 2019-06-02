@@ -34,7 +34,7 @@ export class Header extends React.Component {
                 }
                 {
                     isAuthenticated() &&
-                    <span className='user-info'>{getToken()}</span>
+                    <span className='user-info'>{getToken().sub}</span>
                 }
             </div>
         )
