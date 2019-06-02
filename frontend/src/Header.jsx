@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {addAuthenticationListener, getToken, isAuthenticated, logout} from "./authentication";
+import {addAuthenticationListener, getUser, isAuthenticated, logout} from "./authentication";
 
 export class Header extends React.Component {
     constructor(props) {
@@ -34,7 +34,7 @@ export class Header extends React.Component {
                 }
                 {
                     isAuthenticated() &&
-                    <span className='user-info'>{getToken().sub}</span>
+                    <span className='user-info'>{getUser().sub}</span>
                 }
             </div>
         )

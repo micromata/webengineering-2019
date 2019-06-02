@@ -7,7 +7,8 @@ import jwt_decode from 'jwt-decode';
 
 export function loadStoredToken() {
     let token = getCookie("token");
-    if (token != "") {
+    window.jwt = token;
+    if (token !== "") {
         const decoded = jwt_decode(token);
         window.token = decoded;
     }
@@ -18,6 +19,10 @@ export function isAuthenticated() {
 }
 
 export function getToken() {
+    return window.jwt;
+}
+
+export function getUser() {
     return window.token;
 }
 
@@ -25,6 +30,7 @@ export function authenticate(token) {
     setCookie("token", token, 90);
     const decoded = jwt_decode(token);
     window.token = decoded;
+    window.jwt = token;
     // TODO ML Rename this function
     listener.forEach(l => l.authenticated());
 }

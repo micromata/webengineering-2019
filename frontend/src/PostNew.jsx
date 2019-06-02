@@ -30,7 +30,7 @@ export class PostNew extends React.Component {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': getToken()
+                'Authorization': 'Bearer ' + getToken()
             },
             body: JSON.stringify({
                 title: this.state.title,
