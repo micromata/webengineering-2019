@@ -47,10 +47,6 @@ export class PostDetail extends React.Component {
             return <Comment key={comment.id} {...comment} margin={0} increase={30} update={this.loadData}/>
         });
 
-        // TODO ML Create a simple component for date and createdBy
-        const date = new Date(post.createdAt).relative().raw;
-
-        // Combine
         return (
             <div className='post'>
                 <div className='title'>
@@ -60,7 +56,7 @@ export class PostDetail extends React.Component {
                             {post.url ? new URL(post.url).hostname : ''}
                         </span>
                     </a>
-                    <div className='commentDate'>{date} by {post.createdBy.userName}</div>
+                    <Metadata {...post}/>
                     {
                         // Show conditional rendering. See https://reactjs.org/docs/conditional-rendering.html for
                         // multiple other options.
@@ -82,18 +78,24 @@ export class PostDetail extends React.Component {
     }
 }
 
+function Metadata(props) {
+    const date = new Date(props.createdAt).relative().raw;
+    const author = props.createdBy.userName;
+
+    return <div className='commentDate'>{date} by {author}</div>;
+}
+
 function Comment(props) {
     const comments = props.comments.map(comment => {
         return <Comment key={comment.id} {...comment} margin={props.margin + props.increase}
                         increase={props.increase} update={props.update}/>
     });
 
-    const date = new Date(props.createdAt).relative().raw;
     const style = {marginLeft: props.margin};
     return (
         <div className='postcomment'>
             <div style={style}>
-                <div className='commentDate'>{date} by {props.createdBy.userName}</div>
+                <Metadata {...props}/>
                 {props.comment}
                 {
                     isAuthenticated() &&
