@@ -1,5 +1,6 @@
 package com.mlesniak.lecture.backend.authentication;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,6 +12,13 @@ import java.util.Map;
 @CrossOrigin
 @RestController
 public class AuthenticationController {
+    private AuthenticationService authenticationService;
+
+    @Autowired
+    public AuthenticationController(AuthenticationService authenticationService) {
+        this.authenticationService = authenticationService;
+    }
+
     // TODO ML Use the code to retrieve actual user information
     @GetMapping("/api/authentication/callback")
     public Map<String, String> getUserInfor(@RequestParam("code") String code) {
@@ -21,7 +29,7 @@ public class AuthenticationController {
     }
 
     /**
-     * Return the URL for OAuth.
+     * Return the redirect URL for OAuth.
      * <p>
      * Note that this is the place where we can add multiple authentication provider urls, e.g. using an additional
      * request parameter.
@@ -29,8 +37,7 @@ public class AuthenticationController {
     @GetMapping("/api/authentication/url")
     public Map<String, String> getAuthenticationURL() {
         Map<String, String> map = new HashMap<>();
-        // Create an actual JWT token, e.g. see http://jwtbuilder.jamiekurtz.com/ for a generator online.
-        map.put("url", "https://github.com/login/oauth/authorize?response_type=code&client_id=ca9d6341a3ab314ccba4");
+        map.put("url", authenticationService.getAuthenticationURL());
         return map;
     }
 }
