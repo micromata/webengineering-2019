@@ -19,8 +19,6 @@ import java.util.stream.Collectors;
 
 /**
  * Controller to handle all CRUD-related post requests.
- *
- * // TODO ML Limit length of input fields instead of returning a HTTP 500.
  */
 @CrossOrigin
 @RestController
