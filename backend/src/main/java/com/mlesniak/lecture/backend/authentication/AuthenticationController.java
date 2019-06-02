@@ -3,6 +3,8 @@ package com.mlesniak.lecture.backend.authentication;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,16 +26,15 @@ public class AuthenticationController {
     }
 
     @GetMapping("/api/authentication/callback")
-    public Map<String, String> getUserInfor(@RequestParam("code") String code) {
+    public ResponseEntity<Map<String, String>> getUserInfor(@RequestParam("code") String code) {
         Map<String, String> map = new HashMap<>();
 
         String jwtToken = authenticationService.retrieveJWTToken(code);
         if (jwtToken == null) {
-            // TODO ML Return 500.
-            LOG.warn("jwtToken is null. Fix this");
+            ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
         map.put("token", jwtToken);
-        return map;
+        return ResponseEntity.ok(map);
     }
 
     /**
