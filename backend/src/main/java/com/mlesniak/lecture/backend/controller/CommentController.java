@@ -1,7 +1,9 @@
 package com.mlesniak.lecture.backend.controller;
 
 import com.mlesniak.lecture.backend.model.Comment;
+import com.mlesniak.lecture.backend.model.User;
 import com.mlesniak.lecture.backend.repository.CommentRepository;
+import com.mlesniak.lecture.backend.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Optional;
@@ -23,10 +26,15 @@ public class CommentController {
 
     // TODO ML We should use a service here.
     private CommentRepository commentRepository;
+    private UserRepository userRepository;
+
+    @Resource
+    private User user;
 
     @Autowired
-    public CommentController(CommentRepository commentRepository) {
+    public CommentController(CommentRepository commentRepository, UserRepository userRepository) {
         this.commentRepository = commentRepository;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -47,8 +55,10 @@ public class CommentController {
         // Add comment to parent comment.
         parentComment.getComments().add(comment);
 
-        // Update both.
+        // Update all releated entities.
         commentRepository.save(comment);
+        comment.createdBy = user.getPlainUser();
+        userRepository.save(comment.createdBy);
         commentRepository.save(parentComment);
         return ResponseEntity
                 .status(HttpStatus.OK)

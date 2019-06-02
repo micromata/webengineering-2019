@@ -120,8 +120,10 @@ public class PostController {
         // Add comment to parent post.
         parentPost.getComments().add(comment);
 
-        // Update both.
+        // Update all releated entities.
         commentRepository.save(comment);
+        comment.createdBy = user.getPlainUser();
+        userRepository.save(comment.createdBy);
         postRepository.save(parentPost);
         return ResponseEntity
                 .status(HttpStatus.OK)
