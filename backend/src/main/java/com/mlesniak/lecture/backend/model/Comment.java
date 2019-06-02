@@ -15,6 +15,10 @@ public class Comment extends RestObject implements Commentable {
     @Column(length = 4096)
     public String comment;
 
+    @OneToOne
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    public User createdBy;
+
     /**
      * Note: While I favor consistency this is (or might?) be the case where making an exception from the rule is ok for
      * now, since our classes are still small. Do not hesitate to replace field access with proper getter and setter
@@ -29,10 +33,11 @@ public class Comment extends RestObject implements Commentable {
     public String toString() {
         return "Comment{" +
                 "id=" + id +
-                ", createdAt=" + createdAt +
                 ", comment='" + comment + '\'' +
+                ", createdBy=" + createdBy +
                 ", comments=" + comments +
                 ", numberOfComments=" + numberOfComments +
+                ", createdAt=" + createdAt +
                 '}';
     }
 
