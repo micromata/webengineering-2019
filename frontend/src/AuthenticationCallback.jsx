@@ -27,6 +27,7 @@ export class AuthenticationCallback extends React.Component {
     }
 
     render() {
-        return <pre>{JSON.stringify(this.props)}</pre>;
+        // You could add a list of authentication providers here.
+        return null;
     }
 }
