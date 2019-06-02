@@ -55,7 +55,7 @@ public class AuthenticationFilter implements Filter {
         Optional<Claims> claims = decodeRequest(request);
         if (claims.isPresent()) {
             Claims c = claims.get();
-            user.setId(Long.parseLong(c.get("id", String.class)));
+            user.setId((long) c.get("id", Integer.class));
             user.setUserName(c.getSubject());
             user.setFullName(c.get("name", String.class));
             LOG.info("claimUser={}", user);
