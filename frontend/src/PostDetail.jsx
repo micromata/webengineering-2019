@@ -134,7 +134,12 @@ class ReplyArea extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        // TODO ML Prevent empty comments?
+
+        // Prevent empty comments.
+        if (this.state.comment.trim() === '') {
+            return;
+        }
+
         fetch(backend + '/api/' + this.props.target + '/' + this.props.id + '/comment', {
             method: 'post',
             headers: {
