@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
 runs=100
+TOKEN='Bearer: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtbGVzbmlhayIsIm5hbWUiOiJEci4gTWljaGFlbCBMZXNuaWFrIiwiaWQiOjF9.NB1WAhVKabRNrnpUGxzZFEAEnarD446EBs0ty-zkVy4'
 
 for i in $(seq 1 ${runs})
 do
     echo -n "RUN $i: "
     n=$(($RANDOM % 100))
-    # TODO ML Add variables for easier configuration.
     if [[ ${n} -lt 10 ]]
     then
         echo "Creating a new post..."
-        http POST :8080/api/post title="Title $RANDOM" url="https://en.wikipedia.org/wiki/Special:Random" >/dev/null
+        http POST :8080/api/post title="Title $RANDOM" url="https://en.wikipedia.org/wiki/Special:Random" "Authorization:${TOKEN}" >/dev/null
     else
         echo -n "Creating a comment..."
 
@@ -28,7 +28,7 @@ do
                 sort -R |\
                 head -n 1 |\
                 cut -d' ' -f1)
-            http -v POST :8080/api/comment/${postid}/comment comment="$text" >/dev/null
+            http -v POST :8080/api/comment/${postid}/comment comment="$text" "Authorization:${TOKEN}" >/dev/null
             echo "for a comment"
         else
             # Create comment to post for post
@@ -38,7 +38,7 @@ do
                 sort -R |\
                 head -n 1 |\
                 cut -d' ' -f1)
-            http -v POST :8080/api/post/${postid}/comment comment="$text" >/dev/null
+            http -v POST :8080/api/post/${postid}/comment comment="$text" "Authorization:${TOKEN}" >/dev/null
             echo "for a post"
         fi
     fi
