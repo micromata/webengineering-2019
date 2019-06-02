@@ -9,6 +9,7 @@ import io.jsonwebtoken.impl.DefaultClaims;
 import io.jsonwebtoken.security.Keys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
@@ -27,6 +28,11 @@ public class AuthenticationFilter implements Filter {
 
     @Resource
     private User user;
+
+    // An arbitrary, base64 encoded key with a (byte) length of 32 characters. Under unix, you can execute
+    // echo -n "<your key>"|base64 for cleartext keys.
+    @Value("${SECRET_KEY}")
+    private String secretKey;
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
@@ -66,10 +72,6 @@ public class AuthenticationFilter implements Filter {
     }
 
     public Optional<Claims> decodeRequest(HttpServletRequest request) {
-        // TODO ML Use environment variable for key.
-        // Base64 encoded qwertyuiopasdfghjklzxcvbnm123456
-        String secretKey = "cXdlcnR5dWlvcGFzZGZnaGprbHp4Y3Zibm0xMjM0NTY=";
-
         // Use header information from header 'Authorization' to extract user from JWT.
         String authorization = request.getHeader("Authorization");
 

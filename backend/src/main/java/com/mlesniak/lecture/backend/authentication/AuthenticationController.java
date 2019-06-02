@@ -23,12 +23,11 @@ public class AuthenticationController {
         this.authenticationService = authenticationService;
     }
 
-    // TODO ML Use the code to retrieve actual user information
     @GetMapping("/api/authentication/callback")
     public Map<String, String> getUserInfor(@RequestParam("code") String code) {
         Map<String, String> map = new HashMap<>();
 
-        String jwtToken = authenticationService.retrieveToken(code);
+        String jwtToken = authenticationService.retrieveJWTToken(code);
         if (jwtToken == null) {
             // TODO ML Return 500.
             LOG.warn("jwtToken is null. Fix this");
