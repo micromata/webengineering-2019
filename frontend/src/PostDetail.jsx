@@ -91,7 +91,7 @@ function Comment(props) {
     return (
         <div className='postcomment'>
             <div style={style}>
-                <div className='commentDate'>{date}</div>
+                <div className='commentDate'>{date} by {props.createdBy.userName}</div>
                 {props.comment}
                 {
                     isAuthenticated() &&
