@@ -7,6 +7,7 @@ import {PostList} from "./PostList";
 import {Header} from "./Header";
 import {PostNew} from "./PostNew";
 import {AuthenticationCallback} from "./AuthenticationCallback";
+import {loadStoredToken} from "./authentication";
 
 /**
  * Here we are going to define our routing from paths to shown components.
@@ -25,6 +26,8 @@ const routing = (
         </div>
     </Router>
 );
+
+loadStoredToken();
 
 // See e.g. https://reactjs.org/docs/hello-world.html
 ReactDOM.render(
