@@ -1,12 +1,15 @@
 // TODO ML Create class for this set of methods for easier import and more structure.
+// TODO ML Create singleton for this class using e.g. http://www.adam-bien.com/roller/abien/entry/singleton_pattern_in_es6_and
 // TODO ML Refactor this file!
 import React from "react";
+import jwt_decode from 'jwt-decode';
 
 
 export function loadStoredToken() {
-    let cookie = getCookie("token");
-    if (cookie != "") {
-        window.token = cookie;
+    let token = getCookie("token");
+    if (token != "") {
+        const decoded = jwt_decode(token);
+        window.token = decoded;
     }
 }
 
@@ -20,7 +23,8 @@ export function getToken() {
 
 export function authenticate(token) {
     setCookie("token", token, 90);
-    window.token = token;
+    const decoded = jwt_decode(token);
+    window.token = decoded;
     // TODO ML Rename this function
     listener.forEach(l => l.authenticated());
 }
