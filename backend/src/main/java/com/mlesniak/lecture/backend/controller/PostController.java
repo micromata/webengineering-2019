@@ -28,7 +28,7 @@ public class PostController {
     @Resource
     private User user;
 
-    // TODO ML We should use a service here.
+    // TODO ML Use the same service pattern here as in CommentController.
     private PostRepository postRepository;
     private UserRepository userRepository;
     private CommentRepository commentRepository;
