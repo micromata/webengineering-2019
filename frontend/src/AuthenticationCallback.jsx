@@ -1,7 +1,7 @@
 import React from "react";
 
 import backend from './configuration';
-import {authenticate} from "./authentication";
+import Authentication from "./authentication";
 
 export class AuthenticationCallback extends React.Component {
     constructor(props) {
@@ -21,7 +21,7 @@ export class AuthenticationCallback extends React.Component {
                 return response.json()
             })
             .then((data) => {
-                authenticate(data.token);
+                Authentication.authenticate(data.token);
                 this.props.history.push('/');
             })
     }

@@ -1,7 +1,7 @@
 import React from "react";
 import backend from './configuration';
 import {Date} from 'sugar-date';
-import {getToken, isAuthenticated} from './authentication';
+import Authentication from './authentication';
 
 /**
  * Show details for a single post.
@@ -67,7 +67,7 @@ export class PostDetail extends React.Component {
                     }
                 </div>
                 {
-                    isAuthenticated() &&
+                    Authentication.isAuthenticated() &&
                     <ReplyArea id={post.id} update={this.loadData} allowVisibilityToggle={false} target='post'/>
                 }
                 <div>
@@ -98,7 +98,7 @@ function Comment(props) {
                 <Metadata {...props}/>
                 {props.comment}
                 {
-                    isAuthenticated() &&
+                    Authentication.isAuthenticated() &&
                     <ReplyArea id={props.id} update={props.update} allowVisibilityToggle={true} target='comment'/>
                 }
             </div>
@@ -147,7 +147,7 @@ class ReplyArea extends React.Component {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + getToken()
+                'Authorization': 'Bearer ' + Authentication.getToken()
             },
             body: JSON.stringify({
                 comment: this.state.comment,

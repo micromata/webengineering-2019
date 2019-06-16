@@ -1,6 +1,6 @@
 import React from "react";
 import backend from './configuration';
-import {getToken} from "./authentication";
+import Authentication from "./authentication";
 
 export class PostNew extends React.Component {
     constructor(props) {
@@ -30,7 +30,7 @@ export class PostNew extends React.Component {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + getToken()
+                'Authorization': 'Bearer ' + Authentication.getToken()
             },
             body: JSON.stringify({
                 title: this.state.title,
