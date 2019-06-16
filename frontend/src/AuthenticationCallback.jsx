@@ -21,7 +21,7 @@ export class AuthenticationCallback extends React.Component {
                 return response.json()
             })
             .then((data) => {
-                Authentication.authenticate(data.token);
+                Authentication.parseToken(data.token);
                 this.props.history.push('/');
             })
     }

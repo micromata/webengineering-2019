@@ -33,12 +33,11 @@ export class Authentication {
         return this.token;
     }
 
-    authenticate(token) {
+    parseToken(token) {
         this.setCookie("token", token, 90);
         const decoded = jwt_decode(token);
         this.token = decoded;
         this.jwt = token;
-        // TODO ML Rename this function
         this.listener.forEach(l => l.authenticated());
     }
 
