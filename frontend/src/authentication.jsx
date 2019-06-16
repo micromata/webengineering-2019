@@ -5,37 +5,39 @@ import backend from './configuration';
 export class Authentication {
     constructor() {
         this.listener = [];
-        this.loadStoredToken();
+        this.token = null;
+        this.jwt = null;
 
         this.logout = this.logout.bind(this);
+        this.loadStoredToken();
     }
 
     loadStoredToken() {
         let token = this.getCookie("token");
-        window.jwt = token;
+        this.jwt = token;
         if (token !== "") {
             const decoded = jwt_decode(token);
-            window.token = decoded;
+            this.token = decoded;
         }
     }
 
     isAuthenticated() {
-        return window.token != undefined;
+        return this.token != undefined;
     }
 
     getToken() {
-        return window.jwt;
+        return this.jwt;
     }
 
     getUser() {
-        return window.token;
+        return this.token;
     }
 
     authenticate(token) {
         this.setCookie("token", token, 90);
         const decoded = jwt_decode(token);
-        window.token = decoded;
-        window.jwt = token;
+        this.token = decoded;
+        this.jwt = token;
         // TODO ML Rename this function
         this.listener.forEach(l => l.authenticated());
     }
@@ -45,7 +47,7 @@ export class Authentication {
     }
 
     logout() {
-        window.token = null;
+        this.token = null;
         this.eraseCookie("token");
         this.listener.forEach(l => l.authenticated());
 
@@ -92,6 +94,4 @@ export class Authentication {
 }
 
 const instance = new Authentication();
-Object.freeze(instance);
-
 export default instance;
