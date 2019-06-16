@@ -3,7 +3,7 @@ import jwt_decode from 'jwt-decode';
 import backend from './configuration';
 
 // If set to true, a JWT payload is accepted as it is in the cookie.
-const isDebugAuthentication = true;
+const isDebugAuthentication = false;
 
 export class Authentication {
     constructor() {
