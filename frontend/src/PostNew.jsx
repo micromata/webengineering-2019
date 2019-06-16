@@ -1,6 +1,6 @@
 import React from "react";
 import backend from './configuration';
-import Authentication from "./authentication";
+import Authentication from "./Authentication-";
 
 export class PostNew extends React.Component {
     constructor(props) {

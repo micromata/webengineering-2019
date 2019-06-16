@@ -1,7 +1,7 @@
 import React from "react";
 
 import backend from './configuration';
-import Authentication from "./authentication";
+import Authentication from "./Authentication-";
 
 export class AuthenticationCallback extends React.Component {
     constructor(props) {
