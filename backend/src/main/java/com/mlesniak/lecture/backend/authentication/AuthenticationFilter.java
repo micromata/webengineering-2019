@@ -1,6 +1,7 @@
 package com.mlesniak.lecture.backend.authentication;
 
 import com.mlesniak.lecture.backend.model.User;
+import com.mlesniak.lecture.backend.repository.UserRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.JwtException;
@@ -9,10 +10,12 @@ import io.jsonwebtoken.impl.DefaultClaims;
 import io.jsonwebtoken.security.Keys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.crypto.SecretKey;
 import javax.servlet.*;
@@ -29,10 +32,36 @@ public class AuthenticationFilter implements Filter {
     @Resource
     private User user;
 
+    private UserRepository userRepository;
+
     // An arbitrary, base64 encoded key with a (byte) length of 32 characters. Under unix, you can execute
     // echo -n "<your key>"|base64 for cleartext keys.
     @Value("${SECRET_KEY}")
     private String secretKey;
+
+    // If set to true, a plain username is expected instead of a signed JWT, i.e.
+    //
+    //      Bearer suki
+    //
+    // instead of
+    //
+    //      Bearer ey......
+    //
+    // in the HTTP Authorization header.
+    @Value("${debug.authentication:false}")
+    private boolean debugAuthentication;
+
+    @Autowired
+    public AuthenticationFilter(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    @PostConstruct
+    public void warn() {
+        if (debugAuthentication) {
+            LOG.warn("Debug authentication is enabled using debug.authentication = true");
+        }
+    }
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
@@ -80,6 +109,11 @@ public class AuthenticationFilter implements Filter {
             return Optional.empty();
         }
         authorization = authorization.substring(minStringLength);
+
+        if (debugAuthentication) {
+            return handleDebugAuthentication(authorization);
+        }
+
         SecretKey key = Keys.hmacShaKeyFor(Base64.getDecoder().decode(secretKey.getBytes()));
         try {
             Jwt jwt = Jwts.parser().setSigningKey(key).parseClaimsJws(authorization);
@@ -88,5 +122,26 @@ public class AuthenticationFilter implements Filter {
             LOG.warn("Malformed JWT token submitted: <{}>", authorization);
             return Optional.empty();
         }
+    }
+
+    private Optional<Claims> handleDebugAuthentication(String userName) {
+        // Parse and create a similar Claims object.
+        DefaultClaims claims = new DefaultClaims();
+        claims.put("sub", userName);
+        claims.put("name", "FN/" + userName);
+
+        Optional<User> oUser = userRepository.findByUserName(userName);
+        if (!oUser.isPresent()) {
+            // We have to create the user to have an id (primary key).
+            User user = new User();
+            user.setFullName("FN/" + userName);
+            user.setUserName(userName);
+            userRepository.save(user);
+            claims.put("id", user.getId().intValue());
+        } else {
+            claims.put("id", oUser.get().getId().intValue());
+        }
+
+        return Optional.of(claims);
     }
 }

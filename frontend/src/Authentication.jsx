@@ -2,6 +2,9 @@ import React from "react";
 import jwt_decode from 'jwt-decode';
 import backend from './configuration';
 
+// If set to true, a JWT payload is accepted as it is in the cookie.
+const isDebugAuthentication = true;
+
 export class Authentication {
     constructor() {
         this.listener = [];
@@ -16,7 +19,14 @@ export class Authentication {
         let token = this.getCookie("token");
         this.jwt = token;
         if (token !== "") {
-            const decoded = jwt_decode(token);
+            let decoded = undefined;
+            if (isDebugAuthentication) {
+                decoded = {
+                    sub: token
+                };
+            } else {
+                decoded = jwt_decode(token);
+            }
             this.token = decoded;
         }
     }
@@ -35,7 +45,14 @@ export class Authentication {
 
     parseToken(token) {
         this.setCookie("token", token, 90);
-        const decoded = jwt_decode(token);
+        let decoded = undefined;
+        if (isDebugAuthentication) {
+            decoded = {
+                sub: token
+            };
+        } else {
+            decoded = jwt_decode(token);
+        }
         this.token = decoded;
         this.jwt = token;
         this.listener.forEach(l => l.authenticated());

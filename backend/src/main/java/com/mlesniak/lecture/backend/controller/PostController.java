@@ -9,6 +9,7 @@ import com.mlesniak.lecture.backend.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +33,9 @@ public class PostController {
     private PostRepository postRepository;
     private UserRepository userRepository;
     private CommentRepository commentRepository;
+
+    @Value("${debug.authentication:false}")
+    private boolean debugAuthentication;
 
     // See e.g. https://www.vojtechruzicka.com/field-dependency-injection-considered-harmful/
     //
