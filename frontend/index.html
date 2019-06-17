@@ -3,34 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>News</title>
+    <link rel="stylesheet" href="/static/main.css">
 </head>
 <body>
-<form action="#" onsubmit="return call(this);">
-    <input type="text" name="string" autofocus><br>
-    <input type="submit" value="Submit">
-</form>
-<div id="result"></div>
+<div class="background">
+    <div id="root">
+        <!--Empty-->
+    </div>
+</div>
 
-<script>
-    function call(form) {
-        const value = form['string'].value;
-        fetch('http://localhost:8080/api/uppercase', {
-            method: 'post',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({string: value})
-        })
-            .then(function (response) {
-                return response.json()
-            })
-            .then(function (json) {
-                document.getElementById("result").innerText = json['result'];
-                form['string'].value = '';
-            });
-        return false;
-    }
-</script>
+<script src="/src/main.jsx"></script>
 </body>
 </html>

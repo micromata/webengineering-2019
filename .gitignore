@@ -11,3 +11,13 @@ target/
 
 # Ignore node files
 node_modules/
+
+# Ignore database files
+database/
+
+# Ignore build files
+frontend/.cache
+frontend/dist
+
+# Organizational files
+project/

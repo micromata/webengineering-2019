@@ -1,0 +1,3 @@
+# See https://nodejs.org/de/docs/guides/nodejs-docker-webapp/ (best practices)
+node_modules
+npm-debug.log
